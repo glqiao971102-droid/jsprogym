@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { fontVars } from "./fonts";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import "./globals.css";
 import "./premium/premium.css";
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={fontVars}>{children}</body>
+      <body className={fontVars}>
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }

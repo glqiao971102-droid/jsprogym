@@ -184,9 +184,60 @@
   .t-premium .nav-links {
     display: none;
   }
-  .t-premium .nav .btn {
+  .t-premium .nav-right {
     margin-left: auto;
   }
+}
+.t-premium .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* language switcher */
+.t-premium .lang-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  border: 1px solid var(--line2);
+  border-radius: 8px;
+  color: var(--gold-lite);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.t-premium .lang-switch:hover {
+  border-color: var(--gold);
+  background: rgba(230, 184, 76, 0.06);
+}
+.t-premium .lang-switch svg {
+  width: 16px;
+  height: 16px;
+}
+.t-premium .lang-switch .chev {
+  width: 13px;
+  height: 13px;
+  opacity: 0.8;
+}
+.t-premium .lang-cur {
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.t-premium .lang-switch select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: 0;
+  color: #000;
+}
+.t-premium .lang-switch select option {
+  background: #14110b;
+  color: var(--text);
 }
 
 /* hero */

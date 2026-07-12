@@ -5,6 +5,14 @@
 .DS_Store
 *.pem
 npm-debug.log*
+
+# env
+.env
 .env*.local
+
+# payload
+/media
+/.payload
+
 *.tsbuildinfo
 next-env.d.ts

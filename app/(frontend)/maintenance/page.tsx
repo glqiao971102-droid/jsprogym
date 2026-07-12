@@ -32,7 +32,7 @@ export default async function Maintenance({
           take a look inside.
         </p>
 
-        <form className="maint-form" action="/api/unlock" method="post">
+        <form className="maint-form" action="/unlock" method="post">
           <input
             type="password"
             name="password"

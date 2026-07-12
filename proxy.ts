@@ -5,8 +5,14 @@ import { UNLOCK_COOKIE, UNLOCK_TOKEN } from "./lib/site-lock";
 export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Always allow the gate itself and its unlock endpoint.
-  if (pathname === "/maintenance" || pathname === "/api/unlock") {
+  // Always allow: the gate, the unlock endpoint, and the Payload CMS
+  // (admin panel + its API have their own authentication).
+  if (
+    pathname === "/maintenance" ||
+    pathname === "/unlock" ||
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/api")
+  ) {
     return NextResponse.next();
   }
 

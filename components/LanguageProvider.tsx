@@ -10,10 +10,13 @@ import {
 } from "react";
 import { translations, type Lang } from "@/lib/i18n";
 
+type Dict = Record<string, string>;
+
 type Ctx = {
   lang: Lang;
   setLang: (l: Lang) => void;
   t: (key: string, vars?: Record<string, string | number>) => string;
+  img: (key: string) => string | undefined;
 };
 
 const LanguageContext = createContext<Ctx | null>(null);
@@ -24,7 +27,17 @@ const HTML_LANG: Record<Lang, string> = {
   ms: "ms",
 };
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
+export function LanguageProvider({
+  children,
+  overrides,
+  images,
+}: {
+  children: ReactNode;
+  /** Payload-managed strings: { locale: { key: value } } — take priority over static i18n. */
+  overrides?: Partial<Record<Lang, Dict>>;
+  /** Payload-managed images: { key: url }. */
+  images?: Record<string, string>;
+}) {
   const [lang, setLangState] = useState<Lang>("en");
 
   useEffect(() => {
@@ -48,7 +61,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const t = useCallback(
     (key: string, vars?: Record<string, string | number>) => {
-      let s = translations[lang][key] ?? translations.en[key] ?? key;
+      let s =
+        overrides?.[lang]?.[key] ??
+        translations[lang][key] ??
+        overrides?.en?.[key] ??
+        translations.en[key] ??
+        key;
       if (vars) {
         for (const [k, v] of Object.entries(vars)) {
           s = s.replaceAll(`%${k}%`, String(v));
@@ -56,11 +74,13 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       }
       return s;
     },
-    [lang]
+    [lang, overrides]
   );
 
+  const img = useCallback((key: string) => images?.[key], [images]);
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang, t, img }}>
       {children}
     </LanguageContext.Provider>
   );

@@ -20,7 +20,7 @@ const BOARD = [
 ];
 
 export default function ChampionContent() {
-  const { t } = useLang();
+  const { t, img } = useLang();
 
   return (
     <div className="t-premium">
@@ -109,8 +109,14 @@ export default function ChampionContent() {
             {HALL.map((h) => (
               <div className="hall r" key={h.name}>
                 <div className={`ph ${h.ph}`}>
-                  <span className="medal">{t(`hall${h.n}.medal`)}</span>
-                  <b>{h.initial}</b>
+                  {img(`hall.${h.n}`) && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-photo" src={img(`hall.${h.n}`)} alt="" />
+                  )}
+                  <span className="medal" style={{ position: "relative", zIndex: 1 }}>
+                    {t(`hall${h.n}.medal`)}
+                  </span>
+                  {!img(`hall.${h.n}`) && <b>{h.initial}</b>}
                 </div>
                 <div className="hall-b">
                   <div className="cat">{t(`hall${h.n}.cat`)}</div>

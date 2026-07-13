@@ -87,6 +87,27 @@
   color: var(--gold-lite);
 }
 
+/* CMS-uploaded photo filling a slot (experience cards, blog, IG, about panel) */
+.t-premium .slot-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.t-premium .exp-img,
+.t-premium .post-thumb,
+.t-premium .mv-media {
+  position: relative;
+}
+.t-premium .post-thumb span,
+.t-premium .ig-tile .ov,
+.t-premium .mv-media .mk {
+  position: relative;
+  z-index: 1;
+}
+
 /* scroll progress + reveal */
 .t-premium .progress {
   position: fixed;

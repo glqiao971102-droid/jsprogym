@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     "Meet the JSPROGYM Champions — our members of the month, transformation stories and monthly leaderboard.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   return <ChampionContent />;
 }

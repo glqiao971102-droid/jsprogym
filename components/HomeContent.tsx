@@ -8,7 +8,9 @@ import LangSwitcher from "@/components/LangSwitcher";
 import { useLang } from "@/components/LanguageProvider";
 import type { ReviewData } from "@/lib/reviews";
 
-const IG_HANDLE = "jsprogym";
+const IG_HANDLE = "jspro_gym";
+const IG_URL = "https://www.instagram.com/jspro_gym/";
+const FB_URL = "https://web.facebook.com/jsprogym";
 
 const NAV: { k: string; href: string }[] = [
   { k: "nav.pt", href: "#programs" },
@@ -59,7 +61,9 @@ const G_LOGO = (
 );
 
 export default function HomeContent({ rv }: { rv: ReviewData }) {
-  const { t } = useLang();
+  const { t, img } = useLang();
+  const heroVideo = img("hero.video") || "/hero.mp4";
+  const heroPoster = img("hero.poster") || "/hero-poster.jpg";
 
   const onEnquire = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -119,10 +123,11 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
           loop
           playsInline
           preload="auto"
-          poster="/hero-poster.jpg"
+          poster={heroPoster}
           aria-hidden="true"
+          key={heroVideo}
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src={heroVideo} type="video/mp4" />
         </video>
         <div className="hero-scrim" />
         <div className="wrap hero-in">
@@ -144,12 +149,19 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
       {/* experience cards */}
       <section className="wrap exp" id="experience">
         <div className="exp-grid">
-          {EXP.map((e) => (
+          {EXP.map((e) => {
+            const photo = img(`exp.${e.n}`);
+            return (
             <a className="exp-card" href="#" key={e.n}>
               <div className={`exp-img ${e.cls}`}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
-                  {e.icon}
-                </svg>
+                {photo ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="slot-photo" src={photo} alt="" />
+                ) : (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                    {e.icon}
+                  </svg>
+                )}
               </div>
               <div className="exp-body">
                 <h3>{t(`exp${e.n}.t`)}</h3>
@@ -157,7 +169,8 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
                 <span className="go">{t("card.discover")}</span>
               </div>
             </a>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -165,6 +178,10 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
       <section className="sec alt">
         <div className="wrap mv">
           <div className="mv-media r">
+            {img("about.panel") && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img className="slot-photo" src={img("about.panel")} alt="" />
+            )}
             <div className="mk">
               JS<span className="gold">PRO</span>
               <Trans id="mv.mk" as="small" />
@@ -328,14 +345,19 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
                 <span className="h">{t("ig.sub")}</span>
               </div>
             </div>
-            <a className="btn gold" href={`https://instagram.com/${IG_HANDLE}`} target="_blank" rel="noopener">
+            <a className="btn gold" href={IG_URL} target="_blank" rel="noopener">
               {t("ig.follow")}
             </a>
           </div>
           <div className="ig-grid">
-            {IG_POSTS.map((p) => (
-              <a className="ig-tile r" href={`https://instagram.com/${IG_HANDLE}`} target="_blank" rel="noopener" key={p.cls}>
-                <span className={`ph ${p.cls}`} />
+            {IG_POSTS.map((p, i) => (
+              <a className="ig-tile r" href={IG_URL} target="_blank" rel="noopener" key={p.cls}>
+                {img(`ig.${i + 1}`) ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="slot-photo" src={img(`ig.${i + 1}`)} alt="" />
+                ) : (
+                  <span className={`ph ${p.cls}`} />
+                )}
                 <span className="ov">
                   <svg viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 21s-7-4.5-9.5-9C1 9 2.5 5.5 6 5.5c2 0 3.2 1.2 4 2.4.8-1.2 2-2.4 4-2.4 3.5 0 5 3.5 3.5 6.5C19 16.5 12 21 12 21Z" />
@@ -360,6 +382,10 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
             {[1, 2, 3].map((n) => (
               <article className="post r" key={n}>
                 <div className="post-thumb">
+                  {img(`blog.${n}`) && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-photo" src={img(`blog.${n}`)} alt="" />
+                  )}
                   <span>{t(`blog${n}.cat`)}</span>
                 </div>
                 <div className="post-body">
@@ -423,14 +449,11 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
               </span>
               <p>{t("foot.desc")}</p>
               <div className="socials">
-                <a href="#" aria-label="Facebook">
+                <a href={FB_URL} target="_blank" rel="noopener" aria-label="Facebook">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l1-4h-4V8c0-1 .3-2 2-2h2V2.2C18.4 2 17 2 15.9 2 13 2 11 3.7 11 6.7V10H8v4h3v8z" /></svg>
                 </a>
-                <a href="#" aria-label="Instagram">
+                <a href={IG_URL} target="_blank" rel="noopener" aria-label="Instagram">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none" /></svg>
-                </a>
-                <a href="#" aria-label="TikTok">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2 1.6 3.6 3.5 4v3c-1.3 0-2.5-.4-3.5-1v6.5A5.5 5.5 0 1 1 10.5 10v3a2.5 2.5 0 1 0 2.5 2.5V3z" /></svg>
                 </a>
               </div>
             </div>

@@ -36,6 +36,7 @@ export default function ChampionContent() {
           <nav className="nav-links">
             <Link href="/#experience">{t("nav.home")}</Link>
             <Link href="/#programs">{t("nav.programs")}</Link>
+            <Link href="/membership">{t("nav.membership")}</Link>
             <a href="#hall">{t("nav.halloffame")}</a>
             <a href="#board">{t("nav.leaderboard")}</a>
           </nav>

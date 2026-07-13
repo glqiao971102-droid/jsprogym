@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { ReactNode, FormEvent } from "react";
 import Stars from "@/components/Stars";
 import Trans from "@/components/Trans";
 import LangSwitcher from "@/components/LangSwitcher";
@@ -46,7 +46,8 @@ const IG_POSTS = [
   { cls: "ig-i6", likes: "1.9k", cap: "Champion 🏆" },
 ];
 
-const BRANCHES = ["USJ 1, Subang Jaya", "Mont Kiara, KL", "SS15, Subang", "Damansara, PJ"];
+// Enquiry WhatsApp: 013-711 1613 -> international 6013-711 1613
+const TOUR_WA = "60137111613";
 
 const G_LOGO = (
   <>
@@ -59,6 +60,22 @@ const G_LOGO = (
 
 export default function HomeContent({ rv }: { rv: ReviewData }) {
   const { t } = useLang();
+
+  const onEnquire = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const d = new FormData(e.currentTarget);
+    const msg =
+      "Hi JSPROGYM! I'd like to enquire.\n" +
+      `Name: ${d.get("name") || ""}\n` +
+      `Phone: ${d.get("phone") || ""}\n` +
+      `Email: ${d.get("email") || ""}\n` +
+      `Interested in: ${d.get("interest") || ""}`;
+    window.open(
+      `https://wa.me/${TOUR_WA}?text=${encodeURIComponent(msg)}`,
+      "_blank",
+      "noopener"
+    );
+  };
 
   return (
     <div className="t-premium">
@@ -95,6 +112,19 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
 
       {/* hero */}
       <section className="hero">
+        <video
+          className="hero-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/hero-poster.jpg"
+          aria-hidden="true"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-scrim" />
         <div className="wrap hero-in">
           <Trans id="hero.eyebrow" as="div" className="eyebrow r" />
           <Trans id="hero.title" as="h1" className="r" />
@@ -155,7 +185,7 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
             </div>
             <div className="mv-stats">
               <div className="mv-stat"><b>10K+</b><span>{t("mv.stat.members")}</span></div>
-              <div className="mv-stat"><b>4</b><span>{t("mv.stat.branches")}</span></div>
+              <div className="mv-stat"><b>JB</b><span>{t("mv.stat.branches")}</span></div>
               <div className="mv-stat"><b>40+</b><span>{t("mv.stat.coaches")}</span></div>
               <div className="mv-stat"><b>60+</b><span>{t("mv.stat.classes")}</span></div>
             </div>
@@ -360,19 +390,21 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
           </div>
           <div className="form-card r">
             <h3>{t("tour.reserve")}</h3>
-            <form className="form">
-              <input type="text" placeholder={t("form.name")} />
-              <input type="tel" placeholder={t("form.phone")} />
-              <input type="email" placeholder={t("form.email")} />
-              <select defaultValue="">
+            <form className="form" onSubmit={onEnquire}>
+              <input type="text" name="name" placeholder={t("form.name")} required />
+              <input type="tel" name="phone" placeholder={t("form.phone")} required />
+              <input type="email" name="email" placeholder={t("form.email")} />
+              <select name="interest" defaultValue="" required>
                 <option value="" disabled>
-                  {t("form.branch")}
+                  {t("form.interest")}
                 </option>
-                {BRANCHES.map((b) => (
-                  <option key={b}>{b}</option>
-                ))}
+                <option value={t("form.opt.walkin")}>{t("form.opt.walkin")}</option>
+                <option value={t("form.opt.membership")}>{t("form.opt.membership")}</option>
+                <option value={t("form.opt.pt")}>{t("form.opt.pt")}</option>
+                <option value={t("form.opt.class")}>{t("form.opt.class")}</option>
+                <option value={t("form.opt.other")}>{t("form.opt.other")}</option>
               </select>
-              <button className="btn gold" type="button">
+              <button className="btn gold" type="submit">
                 {t("form.submit")}
               </button>
             </form>
@@ -403,14 +435,6 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
               </div>
             </div>
             <div>
-              <h4>{t("foot.branches")}</h4>
-              <ul>
-                {BRANCHES.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </div>
-            <div>
               <h4>{t("foot.explore")}</h4>
               <ul>
                 <li><a href="#programs">{t("nav.pt")}</a></li>
@@ -419,19 +443,6 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
                 <li><a href="#instagram">{t("nav.gallery")}</a></li>
                 <li><a href="#blog">{t("nav.blog")}</a></li>
               </ul>
-            </div>
-            <div>
-              <h4>{t("foot.getapp")}</h4>
-              <div className="apps">
-                <a className="app-badge" href="#">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 2c.1 1.2-.4 2.4-1.1 3.2-.8.9-2 1.5-3.1 1.4-.1-1.1.4-2.3 1.1-3.1C13.7 2.6 15 2 16 2Zm3.3 7.6c-1.1.7-1.8 1.9-1.8 3.2 0 1.5.9 2.9 2.2 3.5-.3.9-.7 1.7-1.3 2.6-.8 1.1-1.6 2.2-2.9 2.2-1.2 0-1.6-.7-3-.7s-1.9.7-3 .7c-1.3 0-2.3-1.2-3.1-2.3C3.9 18 3 14.8 4.3 12.5c.7-1.2 2-2 3.4-2 1.2 0 2 .8 3 .8 1 0 1.6-.8 3-.8 1 0 2.1.4 3 1.1Z" /></svg>
-                  <span>{t("foot.appstore")}<small>{t("foot.appstore.small")}</small></span>
-                </a>
-                <a className="app-badge" href="#">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3.5 14.5 12 4 20.5c-.3-.2-.5-.6-.5-1v-15c0-.4.2-.8.5-1Zm12 5.9 2.9 2.3c.8.5.8 1.6 0 2.1L16 16.1 13.5 12 16 9.4ZM5.7 3l9.1 5.3L12.7 10 5.7 3Zm0 18 7-7 2.1 1.7L5.7 21Z" /></svg>
-                  <span>{t("foot.play")}<small>{t("foot.play.small")}</small></span>
-                </a>
-              </div>
             </div>
           </div>
           <div className="foot-bottom">

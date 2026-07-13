@@ -247,9 +247,37 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  /* poster acts as the fallback until the video plays / if motion is reduced */
+  background: linear-gradient(180deg, rgba(22, 19, 13, 0.5), rgba(10, 9, 8, 0.7)),
+    url("/hero-poster.jpg") center/cover no-repeat, #0a0908;
+}
+/* video hero replaces the old grid + glow decorations */
+.t-premium .hero::before,
+.t-premium .hero::after {
+  display: none;
+}
+.t-premium .hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.t-premium .hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
   background:
-    radial-gradient(70% 60% at 50% -5%, rgba(230, 184, 76, 0.16), transparent 60%),
-    linear-gradient(180deg, #16130d 0%, var(--bg) 62%);
+    linear-gradient(90deg, rgba(8, 7, 6, 0.95) 0%, rgba(8, 7, 6, 0.62) 40%, rgba(8, 7, 6, 0.25) 68%, rgba(8, 7, 6, 0.55) 100%),
+    linear-gradient(180deg, rgba(8, 7, 6, 0.55) 0%, transparent 20%, transparent 50%, rgba(8, 7, 6, 0.92) 100%),
+    radial-gradient(120% 90% at 95% 0%, rgba(230, 184, 76, 0.14), transparent 55%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .t-premium .hero-video {
+    display: none;
+  }
 }
 .t-premium .hero::before {
   content: "";
@@ -678,7 +706,7 @@
 }
 .t-premium .foot-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  grid-template-columns: 2fr 1fr;
   gap: 34px;
 }
 .t-premium .foot-grid p {

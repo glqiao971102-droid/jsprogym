@@ -53,7 +53,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.vision.p":
       "To build Malaysia's most loved fitness community, where results are real, coaching is personal and progress is shared.",
     "mv.stat.members": "Members",
-    "mv.stat.branches": "Branches",
+    "mv.stat.branches": "Johor Bahru",
     "mv.stat.coaches": "Coaches",
     "mv.stat.classes": "Classes / wk",
 
@@ -119,8 +119,13 @@ export const translations: Record<Lang, Dict> = {
     "form.name": "Full name",
     "form.phone": "Phone number",
     "form.email": "Email address",
-    "form.branch": "Choose a branch…",
-    "form.submit": "Book Free Tour",
+    "form.interest": "What are you interested in?",
+    "form.opt.walkin": "Walk-in",
+    "form.opt.membership": "Membership",
+    "form.opt.pt": "Personal Trainer",
+    "form.opt.class": "Group Class",
+    "form.opt.other": "Other",
+    "form.submit": "Send via WhatsApp",
 
     "foot.desc":
       "Premium fitness for everyone — coaching, classes and community across Malaysia. Stronger together.",
@@ -225,7 +230,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.vision.p":
       "打造马来西亚最受喜爱的健身社群 —— 成果真实、指导贴心、进步共享。",
     "mv.stat.members": "会员",
-    "mv.stat.branches": "分店",
+    "mv.stat.branches": "新山 (JB)",
     "mv.stat.coaches": "教练",
     "mv.stat.classes": "堂课 / 周",
 
@@ -291,8 +296,13 @@ export const translations: Record<Lang, Dict> = {
     "form.name": "姓名",
     "form.phone": "电话号码",
     "form.email": "电子邮箱",
-    "form.branch": "选择分店…",
-    "form.submit": "预约免费导览",
+    "form.interest": "你想了解什么？",
+    "form.opt.walkin": "到店参观 (Walk-in)",
+    "form.opt.membership": "会员",
+    "form.opt.pt": "私人教练",
+    "form.opt.class": "团体课",
+    "form.opt.other": "其他",
+    "form.submit": "通过 WhatsApp 发送",
 
     "foot.desc":
       "属于每个人的高端健身 —— 遍布马来西亚的教练、课程与社群。一起变更强。",
@@ -396,7 +406,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.vision.p":
       "打造馬來西亞最受喜愛的健身社群 —— 成果真實、指導貼心、進步共享。",
     "mv.stat.members": "會員",
-    "mv.stat.branches": "分店",
+    "mv.stat.branches": "新山 (JB)",
     "mv.stat.coaches": "教練",
     "mv.stat.classes": "堂課 / 週",
 
@@ -462,8 +472,13 @@ export const translations: Record<Lang, Dict> = {
     "form.name": "姓名",
     "form.phone": "電話號碼",
     "form.email": "電子郵箱",
-    "form.branch": "選擇分店…",
-    "form.submit": "預約免費導覽",
+    "form.interest": "你想了解什麼？",
+    "form.opt.walkin": "到店參觀 (Walk-in)",
+    "form.opt.membership": "會員",
+    "form.opt.pt": "私人教練",
+    "form.opt.class": "團體課",
+    "form.opt.other": "其他",
+    "form.submit": "透過 WhatsApp 傳送",
 
     "foot.desc":
       "屬於每個人的高端健身 —— 遍佈馬來西亞的教練、課程與社群。一起變更強。",
@@ -567,7 +582,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.vision.p":
       "Membina komuniti kecergasan paling disayangi di Malaysia — hasil yang nyata, bimbingan yang peribadi dan kemajuan yang dikongsi bersama.",
     "mv.stat.members": "Ahli",
-    "mv.stat.branches": "Cawangan",
+    "mv.stat.branches": "Johor Bahru",
     "mv.stat.coaches": "Jurulatih",
     "mv.stat.classes": "Kelas / mgg",
 
@@ -633,8 +648,13 @@ export const translations: Record<Lang, Dict> = {
     "form.name": "Nama penuh",
     "form.phone": "Nombor telefon",
     "form.email": "Alamat e-mel",
-    "form.branch": "Pilih cawangan…",
-    "form.submit": "Tempah Lawatan Percuma",
+    "form.interest": "Apa yang anda minati?",
+    "form.opt.walkin": "Walk-in",
+    "form.opt.membership": "Keahlian",
+    "form.opt.pt": "Jurulatih Peribadi",
+    "form.opt.class": "Kelas Berkumpulan",
+    "form.opt.other": "Lain-lain",
+    "form.submit": "Hantar melalui WhatsApp",
 
     "foot.desc":
       "Kecergasan premium untuk semua — bimbingan, kelas dan komuniti di seluruh Malaysia. Lebih kuat bersama.",

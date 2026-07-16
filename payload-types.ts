@@ -184,8 +184,6 @@ export interface Media {
 export interface Area {
   id: number;
   name: string;
-  nameZh?: string | null;
-  nameMs?: string | null;
   /**
    * Auto-filled from the name if left blank.
    */
@@ -195,6 +193,8 @@ export interface Area {
    * Lower shows first.
    */
   order?: number | null;
+  cover?: (number | null) | Media;
+  gallery?: (number | Media)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -323,11 +323,11 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface AreasSelect<T extends boolean = true> {
   name?: T;
-  nameZh?: T;
-  nameMs?: T;
   slug?: T;
   description?: T;
   order?: T;
+  cover?: T;
+  gallery?: T;
   updatedAt?: T;
   createdAt?: T;
 }

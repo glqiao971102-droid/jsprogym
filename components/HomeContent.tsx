@@ -7,6 +7,14 @@ import Trans from "@/components/Trans";
 import LangSwitcher from "@/components/LangSwitcher";
 import { useLang } from "@/components/LanguageProvider";
 import type { ReviewData } from "@/lib/reviews";
+import type { Lang } from "@/lib/i18n";
+
+export type AreaCover = {
+  slug: string;
+  name: Partial<Record<Lang, string>>;
+  cover: string | null;
+  count: number;
+};
 
 const IG_HANDLE = "jspro_gym";
 const IG_URL = "https://www.instagram.com/jspro_gym/";
@@ -19,7 +27,7 @@ const NAV: { k: string; href: string }[] = [
   { k: "nav.membership", href: "/membership" },
   { k: "nav.rewards", href: "#experience" },
   { k: "nav.reviews", href: "#reviews" },
-  { k: "nav.gallery", href: "#instagram" },
+  { k: "nav.gallery", href: "/area" },
   { k: "nav.blog", href: "#blog" },
   { k: "nav.contact", href: "#tour" },
 ];
@@ -61,8 +69,14 @@ const G_LOGO = (
   </>
 );
 
-export default function HomeContent({ rv }: { rv: ReviewData }) {
-  const { t, img } = useLang();
+export default function HomeContent({
+  rv,
+  areas = [],
+}: {
+  rv: ReviewData;
+  areas?: AreaCover[];
+}) {
+  const { t, lang, img } = useLang();
   const heroVideo = img("hero.video") || "/hero.mp4";
   const heroPoster = img("hero.poster") || "/hero-poster.jpg";
 
@@ -232,6 +246,37 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
           </div>
         </div>
       </section>
+
+      {/* explore by area */}
+      {areas.length > 0 && (
+        <section className="sec alt" id="areas">
+          <div className="wrap">
+            <div className="sec-h center r">
+              <div className="eyebrow">{t("nav.gallery")}</div>
+              <h2>
+                {{ en: "Explore our gym", "zh-Hans": "探索我们的健身房", "zh-Hant": "探索我們的健身房", ms: "Terokai gim kami" }[lang]}
+              </h2>
+              <p>
+                {{ en: "Every zone in one place — tap an area to see the full gallery.", "zh-Hans": "每个区域一网打尽 —— 点击查看完整相册。", "zh-Hant": "每個區域一覽無遺 —— 點擊查看完整相簿。", ms: "Setiap zon di satu tempat — ketik untuk lihat galeri penuh." }[lang]}
+              </p>
+            </div>
+            <div className="area-cards">
+              {areas.map((a) => (
+                <Link className="area-card r" href={`/area#${a.slug}`} key={a.slug}>
+                  {a.cover && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img className="slot-photo" src={a.cover} alt="" loading="lazy" />
+                  )}
+                  <div className="area-card-b">
+                    <h3>{a.name[lang] || a.name.en || a.slug}</h3>
+                    <span>{a.count} photos</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* champions teaser */}
       <section className="sec" id="champion">
@@ -464,7 +509,7 @@ export default function HomeContent({ rv }: { rv: ReviewData }) {
                 <li><a href="#programs">{t("nav.pt")}</a></li>
                 <li><a href="#programs">{t("nav.gc")}</a></li>
                 <li><a href="#experience">{t("nav.rewards")}</a></li>
-                <li><a href="#instagram">{t("nav.gallery")}</a></li>
+                <li><a href="/area">{t("nav.gallery")}</a></li>
                 <li><a href="#blog">{t("nav.blog")}</a></li>
               </ul>
             </div>

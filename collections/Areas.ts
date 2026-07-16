@@ -1,13 +1,9 @@
 import type { CollectionConfig } from "payload";
 
 const slugify = (s: string) =>
-  s
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+  s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
-// Training areas / muscle groups (Back, Chest, Legs, …) — managed in /admin.
+// Training areas / zones (Chest, Back, Personal Training, …) with a photo gallery.
 export const Areas: CollectionConfig = {
   slug: "areas",
   labels: { singular: "Area", plural: "Areas" },
@@ -25,9 +21,7 @@ export const Areas: CollectionConfig = {
     ],
   },
   fields: [
-    { name: "name", type: "text", required: true, label: "Area (e.g. Back, Chest)" },
-    { name: "nameZh", type: "text", label: "名称 (中文, optional)" },
-    { name: "nameMs", type: "text", label: "Nama (BM, optional)" },
+    { name: "name", type: "text", required: true, localized: true, label: "Area name" },
     {
       name: "slug",
       type: "text",
@@ -35,7 +29,20 @@ export const Areas: CollectionConfig = {
       index: true,
       admin: { description: "Auto-filled from the name if left blank." },
     },
-    { name: "description", type: "textarea", label: "Short description (optional)" },
+    { name: "description", type: "textarea", localized: true, label: "Short description (optional)" },
     { name: "order", type: "number", defaultValue: 0, admin: { description: "Lower shows first." } },
+    {
+      name: "cover",
+      type: "upload",
+      relationTo: "media",
+      label: "Cover photo (shown on the homepage + area header)",
+    },
+    {
+      name: "gallery",
+      type: "upload",
+      relationTo: "media",
+      hasMany: true,
+      label: "Gallery photos",
+    },
   ],
 };

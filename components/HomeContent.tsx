@@ -16,6 +16,11 @@ export type AreaCover = {
   count: number;
 };
 
+const BRANDS = [
+  "eleiko", "hammer-strength", "life-fitness", "cybex",
+  "nautilus", "hoist", "icarian", "impulse",
+];
+
 const IG_HANDLE = "jspro_gym";
 const IG_URL = "https://www.instagram.com/jspro_gym/";
 const FB_URL = "https://web.facebook.com/jsprogym";
@@ -159,6 +164,25 @@ export default function HomeContent({
           </div>
         </div>
         <div className="hero-cue">{t("hero.cue")}</div>
+      </section>
+
+      {/* equipment brands marquee */}
+      <section className="brands">
+        <div className="wrap">
+          <p className="brands-title">
+            {{ en: "Equipment by the world's best brands", "zh-Hans": "我们采用世界顶级器材品牌", "zh-Hant": "我們採用世界頂級器材品牌", ms: "Peralatan daripada jenama terbaik dunia" }[lang]}
+          </p>
+        </div>
+        <div className="brand-track">
+          <div className="brand-row">
+            {[...BRANDS, ...BRANDS].map((b, i) => (
+              <div className="brand-chip" key={b + i} aria-hidden={i >= BRANDS.length}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/brands/${b}.png`} alt={b.replace(/-/g, " ")} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* experience cards */}

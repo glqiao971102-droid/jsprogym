@@ -797,7 +797,8 @@
 
 /* experience cards */
 .t-premium .exp {
-  margin-top: -70px;
+  margin-top: 0;
+  padding-top: clamp(50px, 7vw, 80px);
   position: relative;
   z-index: 5;
   padding-bottom: clamp(40px, 6vw, 70px);

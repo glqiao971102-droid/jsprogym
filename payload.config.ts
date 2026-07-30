@@ -1,6 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import { buildConfig } from "payload";
+import sharp from "sharp";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
@@ -34,6 +35,7 @@ export default buildConfig({
   collections: [Users, Media, Areas],
   globals: [Homepage, ChampionPage, SiteSettings],
   editor: lexicalEditor(),
+  sharp,
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -49,7 +51,16 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        media: { prefix: "jsprogym" },
+        // serve images directly from S3 (public) instead of proxying through the app
+        media: {
+          prefix: "jsprogym",
+          disablePayloadAccessControl: true,
+          // public virtual-hosted S3 URL (avoids the serverless proxy)
+          generateFileURL: ({ filename, prefix }) =>
+            `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.amazonaws.com/${
+              prefix ? `${prefix}/` : ""
+            }${filename}`,
+        },
       },
       bucket: process.env.S3_BUCKET || "",
       config: {

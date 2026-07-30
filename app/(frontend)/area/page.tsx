@@ -37,7 +37,8 @@ async function loadAreas(): Promise<AreaData[]> {
           photos,
         };
       })
-      .filter((a) => a.photos.length > 0);
+      // Personal Training has its own dedicated landing page (/personal-training)
+      .filter((a) => a.photos.length > 0 && a.slug !== "personal-training");
   } catch (err) {
     console.error("[area] failed to load areas:", err);
     return [];

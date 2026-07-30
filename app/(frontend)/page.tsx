@@ -33,7 +33,8 @@ async function loadAreaCovers(): Promise<AreaCover[]> {
           count: gallery.length,
         };
       })
-      .filter((a): a is AreaCover => !!a.cover);
+      // Personal Training lives on its own landing page (/personal-training)
+      .filter((a): a is AreaCover => !!a.cover && a.slug !== "personal-training");
   } catch {
     return [];
   }

@@ -9,6 +9,7 @@ const TOUR_WA = "60137111613";
 
 type Pkg = {
   term: string;
+  tag: string;
   months: number;
   price: number;
   feature?: boolean;
@@ -16,10 +17,10 @@ type Pkg = {
 
 // Prices from the JSPRO GYM membership flyer.
 const PACKAGES: Pkg[] = [
-  { term: "1 Month", months: 1, price: 219 },
-  { term: "3 Months", months: 3, price: 538 },
-  { term: "6 Months", months: 6, price: 959 },
-  { term: "12 Months", months: 12, price: 1788, feature: true },
+  { term: "1 Month", tag: "Start strong", months: 1, price: 219 },
+  { term: "3 Months", tag: "Commit to your goals", months: 3, price: 538 },
+  { term: "6 Months", tag: "Go further", months: 6, price: 959 },
+  { term: "12 Months", tag: "The full commitment", months: 12, price: 1788, feature: true },
 ];
 
 const BASE_MONTHLY = 219; // 1-month rate, used to show savings
@@ -69,8 +70,8 @@ export default function MembershipContent() {
             Membership <span className="gold">Packages.</span>
           </h1>
           <p>
-            Flexible plans built for real progress — the longer you commit, the
-            more you save. Pick the term that fits your goals and start today.
+            Whatever your goal, there&apos;s a membership built to keep you
+            moving, growing, and getting stronger.
           </p>
         </div>
       </section>
@@ -92,13 +93,12 @@ export default function MembershipContent() {
                 <div className={`mem-card${p.feature ? " feature" : ""}`} key={p.term}>
                   {p.feature && <span className="mem-badge">Best value</span>}
                   <div className="mem-term">{p.term}</div>
+                  <div className="mem-tag">{p.tag}</div>
                   <div className="mem-price">{money(p.price)}</div>
                   <div className="mem-per">
                     {p.months > 1 ? `${money(perMonth)} / month` : "per month"}
                   </div>
-                  {save > 0 && (
-                    <div className="mem-save">Save {money(save)}</div>
-                  )}
+                  <div className="mem-save">{save > 0 ? `Save ${money(save)}` : " "}</div>
                   <a
                     className={`btn ${p.feature ? "gold" : "outline"} mem-cta`}
                     href={`https://wa.me/${TOUR_WA}?text=${encodeURIComponent(

@@ -244,6 +244,10 @@
   height: 100%;
   object-fit: cover;
 }
+/* brighten a dark source image */
+.t-premium .pt-feat-img.bright img {
+  filter: brightness(1.6) contrast(1.02) saturate(1.05);
+}
 .t-premium .pt-feat-img::after {
   content: "";
   position: absolute;

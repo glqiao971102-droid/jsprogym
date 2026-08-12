@@ -301,12 +301,12 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
         <div className="wrap">
           <div className="pt-feats">
             {[
-              { t: c.f1t, d: c.f1d, pic: featPics[0], icon: ICONS[0] },
-              { t: c.f2t, d: c.f2d, pic: featPics[1], icon: ICONS[1] },
-              { t: c.f3t, d: c.f3d, pic: featPics[2], icon: ICONS[2] },
+              { t: c.f1t, d: c.f1d, pic: featPics[0], icon: ICONS[0], bright: false },
+              { t: c.f2t, d: c.f2d, pic: featPics[1], icon: ICONS[1], bright: false },
+              { t: c.f3t, d: c.f3d, pic: "/competition-prep.jpeg", icon: ICONS[2], bright: true },
             ].map((f, k) => (
               <div className="pt-feat r" key={k}>
-                <div className="pt-feat-img">
+                <div className={`pt-feat-img${f.bright ? " bright" : ""}`}>
                   {f.pic && (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={f.pic} alt="" loading="lazy" />

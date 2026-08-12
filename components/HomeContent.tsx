@@ -28,7 +28,7 @@ const FB_URL = "https://web.facebook.com/jsprogym";
 
 const NAV: { k: string; href: string }[] = [
   { k: "nav.pt", href: "/personal-training" },
-  { k: "nav.gc", href: "#programs" },
+  { k: "nav.gc", href: "#group-class" },
   { k: "nav.membership", href: "/membership" },
   { k: "nav.reviews", href: "#reviews" },
   { k: "nav.gallery", href: "/area" },
@@ -213,7 +213,7 @@ export default function HomeContent({
       </section>
 
       {/* mission / vision */}
-      <section className="sec alt">
+      <section className="sec alt" id="group-class">
         <div className="wrap mv">
           <div className="mv-media r">
             {img("about.panel") && (
@@ -232,17 +232,13 @@ export default function HomeContent({
             </div>
             <div className="mv-block">
               <h3>{t("mv.mission.t")}</h3>
+              <div className="mv-sub">{t("mv.mission.sub")}</div>
               <p>{t("mv.mission.p")}</p>
             </div>
             <div className="mv-block">
               <h3>{t("mv.vision.t")}</h3>
+              <div className="mv-sub">{t("mv.vision.sub")}</div>
               <p>{t("mv.vision.p")}</p>
-            </div>
-            <div className="mv-stats">
-              <div className="mv-stat"><b>10K+</b><span>{t("mv.stat.members")}</span></div>
-              <div className="mv-stat"><b>JB</b><span>{t("mv.stat.branches")}</span></div>
-              <div className="mv-stat"><b>40+</b><span>{t("mv.stat.coaches")}</span></div>
-              <div className="mv-stat"><b>60+</b><span>{t("mv.stat.classes")}</span></div>
             </div>
           </div>
         </div>

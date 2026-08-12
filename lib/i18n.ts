@@ -46,13 +46,15 @@ export const translations: Record<Lang, Dict> = {
 
     "mv.mk": "STRONGER TOGETHER",
     "mv.who": "Who we are",
-    "mv.movement": 'More than a gym — a <span class="gold">movement.</span>',
+    "mv.movement": 'Train hard. <span class="gold">Together.</span>',
     "mv.mission.t": "Our Mission",
+    "mv.mission.sub": "Push your limits",
     "mv.mission.p":
-      "To make world-class training welcoming and accessible — so everyone, at every level, feels strong, supported and at home the moment they walk in.",
+      "Every class is a chance to work harder, move better and become stronger.",
     "mv.vision.t": "Our Vision",
+    "mv.vision.sub": "Build a stronger community",
     "mv.vision.p":
-      "To build Malaysia's most loved fitness community, where results are real, coaching is personal and progress is shared.",
+      "We train together, challenge each other, and grow stronger — one session at a time.",
     "mv.stat.members": "Members",
     "mv.stat.branches": "Johor Bahru",
     "mv.stat.coaches": "Coaches",
@@ -224,13 +226,15 @@ export const translations: Record<Lang, Dict> = {
 
     "mv.mk": "一起变更强",
     "mv.who": "关于我们",
-    "mv.movement": '不只是健身房，更是一股<span class="gold">风潮。</span>',
+    "mv.movement": '努力训练，<span class="gold">一起变强。</span>',
     "mv.mission.t": "我们的使命",
+    "mv.mission.sub": "挑战你的极限",
     "mv.mission.p":
-      "让世界级训练变得亲切而触手可及 —— 让每一个人、无论水平高低，一走进来就感到强大、被支持，如同回到家。",
+      "每一堂课都是更努力训练、动作更到位、变得更强的机会。",
     "mv.vision.t": "我们的愿景",
+    "mv.vision.sub": "打造更强的社群",
     "mv.vision.p":
-      "打造马来西亚最受喜爱的健身社群 —— 成果真实、指导贴心、进步共享。",
+      "我们一起训练、互相挑战,一堂课一堂课地变得更强。",
     "mv.stat.members": "会员",
     "mv.stat.branches": "新山 (JB)",
     "mv.stat.coaches": "教练",
@@ -401,13 +405,15 @@ export const translations: Record<Lang, Dict> = {
 
     "mv.mk": "一起變更強",
     "mv.who": "關於我們",
-    "mv.movement": '不只是健身房，更是一股<span class="gold">風潮。</span>',
+    "mv.movement": '努力訓練，<span class="gold">一起變強。</span>',
     "mv.mission.t": "我們的使命",
+    "mv.mission.sub": "挑戰你的極限",
     "mv.mission.p":
-      "讓世界級訓練變得親切而觸手可及 —— 讓每一個人、無論程度高低，一走進來就感到強大、被支持，宛如回到家。",
+      "每一堂課都是更努力訓練、動作更到位、變得更強的機會。",
     "mv.vision.t": "我們的願景",
+    "mv.vision.sub": "打造更強的社群",
     "mv.vision.p":
-      "打造馬來西亞最受喜愛的健身社群 —— 成果真實、指導貼心、進步共享。",
+      "我們一起訓練、互相挑戰,一堂課一堂課地變得更強。",
     "mv.stat.members": "會員",
     "mv.stat.branches": "新山 (JB)",
     "mv.stat.coaches": "教練",
@@ -578,13 +584,15 @@ export const translations: Record<Lang, Dict> = {
 
     "mv.mk": "LEBIH KUAT BERSAMA",
     "mv.who": "Siapa kami",
-    "mv.movement": 'Lebih daripada gim — sebuah <span class="gold">gerakan.</span>',
+    "mv.movement": 'Berlatih keras. <span class="gold">Bersama.</span>',
     "mv.mission.t": "Misi Kami",
+    "mv.mission.sub": "Cabar had anda",
     "mv.mission.p":
-      "Menjadikan latihan bertaraf dunia mesra dan mudah dicapai — supaya semua orang, pada setiap tahap, rasa kuat, disokong dan seperti di rumah sebaik melangkah masuk.",
+      "Setiap kelas ialah peluang untuk berlatih lebih keras, bergerak lebih baik dan menjadi lebih kuat.",
     "mv.vision.t": "Visi Kami",
+    "mv.vision.sub": "Bina komuniti yang lebih kuat",
     "mv.vision.p":
-      "Membina komuniti kecergasan paling disayangi di Malaysia — hasil yang nyata, bimbingan yang peribadi dan kemajuan yang dikongsi bersama.",
+      "Kita berlatih bersama, mencabar satu sama lain, dan menjadi lebih kuat — satu sesi pada satu masa.",
     "mv.stat.members": "Ahli",
     "mv.stat.branches": "Johor Bahru",
     "mv.stat.coaches": "Jurulatih",

@@ -5,6 +5,7 @@ import type { ReactNode, FormEvent } from "react";
 import Stars from "@/components/Stars";
 import Trans from "@/components/Trans";
 import LangSwitcher from "@/components/LangSwitcher";
+import MerdekaPopup from "@/components/MerdekaPopup";
 import { useLang } from "@/components/LanguageProvider";
 import type { ReviewData } from "@/lib/reviews";
 import type { Lang } from "@/lib/i18n";
@@ -102,6 +103,7 @@ export default function HomeContent({
 
   return (
     <div className="t-premium">
+      <MerdekaPopup />
       <div className="progress" />
 
       {/* nav */}

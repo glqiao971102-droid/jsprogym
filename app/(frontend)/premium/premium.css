@@ -1895,3 +1895,76 @@
   color: var(--muted);
   font-size: 15px;
 }
+
+
+/* ============ Merdeka promo popup ============ */
+.t-premium .mk-pop {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6, 5, 4, 0.82);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  animation: mkPopFade 0.25s ease;
+}
+@keyframes mkPopFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.t-premium .mk-pop-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(460px, 100%);
+  max-height: 92vh;
+  animation: mkPopIn 0.32s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+@keyframes mkPopIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.t-premium .mk-pop-img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: calc(92vh - 78px);
+  object-fit: contain;
+  border-radius: 16px;
+  border: 1px solid var(--gold-deep);
+  box-shadow: 0 30px 80px -20px rgba(230, 184, 76, 0.4), 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+.t-premium .mk-pop-cta {
+  width: 100%;
+  justify-content: center;
+}
+.t-premium .mk-pop-x {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--bg2);
+  border: 1px solid var(--line2);
+  color: var(--gold-lite);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, color 0.15s;
+}
+.t-premium .mk-pop-x:hover {
+  transform: scale(1.08);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+@media (max-width: 520px) {
+  .t-premium .mk-pop-x { top: -8px; right: -8px; }
+}

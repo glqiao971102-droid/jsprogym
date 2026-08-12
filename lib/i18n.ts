@@ -58,7 +58,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.stat.classes": "Classes / wk",
 
     "prog.eyebrow": "What we offer",
-    "prog.title": "Build for every kind of training",
+    "prog.title": 'Build for every kind of <span class="gold">training.</span>',
     "prog.p": "Lift heavy. Move fast. Train hard. Recover well. Everything you need, all under one roof.",
     "prog1.t": "Strength Training",
     "prog1.d": "Dumbbells from light to heavy, plus quality strength equipment.",
@@ -177,7 +177,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.stat.classes": "堂课 / 周",
 
     "prog.eyebrow": "我们提供",
-    "prog.title": "为每一种训练而生",
+    "prog.title": '为每一种<span class="gold">训练</span>而生',
     "prog.p": "举得更重、动得更快、练得更狠、恢复到位 —— 你需要的一切,都在同一屋檐下。",
     "prog1.t": "力量训练",
     "prog1.d": "从轻到重的哑铃,配备优质力量器械。",
@@ -298,7 +298,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.stat.classes": "堂課 / 週",
 
     "prog.eyebrow": "我們提供",
-    "prog.title": "為每一種訓練而生",
+    "prog.title": '為每一種<span class="gold">訓練</span>而生',
     "prog.p": "舉得更重、動得更快、練得更狠、恢復到位 —— 你需要的一切,都在同一屋簷下。",
     "prog1.t": "力量訓練",
     "prog1.d": "從輕到重的啞鈴,配備優質力量器械。",
@@ -419,7 +419,7 @@ export const translations: Record<Lang, Dict> = {
     "mv.stat.classes": "Kelas / mgg",
 
     "prog.eyebrow": "Yang kami tawarkan",
-    "prog.title": "Dibina untuk setiap jenis latihan",
+    "prog.title": 'Dibina untuk setiap jenis <span class="gold">latihan.</span>',
     "prog.p": "Angkat berat. Bergerak pantas. Berlatih keras. Pulih dengan baik. Semua yang anda perlukan, di bawah satu bumbung.",
     "prog1.t": "Latihan Kekuatan",
     "prog1.d": "Dumbel dari ringan ke berat, serta peralatan kekuatan berkualiti.",

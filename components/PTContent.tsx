@@ -213,7 +213,6 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
           <nav className="nav-links">
             <Link href="/">{c.home}</Link>
             <Link href="/area">Gallery</Link>
-            <Link href="/champion">Champions</Link>
           </nav>
           <div className="nav-right">
             <LangSwitcher />

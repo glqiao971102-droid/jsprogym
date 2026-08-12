@@ -57,7 +57,7 @@ const IG_POSTS = [
   { cls: "ig-i3", likes: "2.1k", cap: "New PR!" },
   { cls: "ig-i4", likes: "1.5k", cap: "Class vibes" },
   { cls: "ig-i5", likes: "870", cap: "Recovery day" },
-  { cls: "ig-i6", likes: "1.9k", cap: "Champion 🏆" },
+  { cls: "ig-i6", likes: "1.9k", cap: "Big lifts 🏆" },
 ];
 
 // Enquiry WhatsApp: 013-711 1613 -> international 6013-711 1613
@@ -297,50 +297,6 @@ export default function HomeContent({
         </section>
       )}
 
-      {/* champions teaser */}
-      <section className="sec" id="champion">
-        <div className="wrap">
-          <div className="sec-h center r">
-            <Trans id="champ.eyebrow" as="div" className="eyebrow" />
-            <Trans id="champ.title" as="h2" />
-            <Trans id="champ.p" as="p" />
-          </div>
-          <div className="champ-teaser">
-            <div className="champ-feature r">
-              <svg className="crown" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8Z" />
-              </svg>
-              <div className="tagline">{t("champ.cotm")}</div>
-              <h3>Amir Hakim</h3>
-              <div className="role">{t("champ.role")}</div>
-              <p>{t("champ.feature.p")}</p>
-            </div>
-            <div className="champ-side r">
-              <div className="champ-mini">
-                <span className="rank">2</span>
-                <div>
-                  <b>Serena Wong</b>
-                  <span>{t("champ.mini2.sub")}</span>
-                </div>
-                <span className="val">2,480 {t("unit.pts")}</span>
-              </div>
-              <div className="champ-mini">
-                <span className="rank">3</span>
-                <div>
-                  <b>Kavin Raj</b>
-                  <span>{t("champ.mini3.sub")}</span>
-                </div>
-                <span className="val">2,310 {t("unit.pts")}</span>
-              </div>
-              <div className="champ-mini" style={{ alignItems: "center", justifyContent: "center" }}>
-                <Link className="btn gold" href="/champion">
-                  {t("champ.meetall")}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* google reviews */}
       <section className="sec" id="reviews">

@@ -50,7 +50,6 @@ export default function MembershipContent() {
           <nav className="nav-links">
             <Link href="/#experience">{t("nav.home")}</Link>
             <Link href="/#programs">{t("nav.programs")}</Link>
-            <Link href="/champion">{t("nav.champions")}</Link>
             <a href="#packages">{t("nav.membership")}</a>
           </nav>
           <div className="nav-right">

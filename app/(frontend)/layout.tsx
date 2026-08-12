@@ -28,11 +28,8 @@ async function loadContent() {
   const images: Record<string, string> = {};
   try {
     const payload = await getPayload({ config });
-    const [hp, cp] = await Promise.all([
-      payload.findGlobal({ slug: "homepage", locale: "all", depth: 1 }),
-      payload.findGlobal({ slug: "champion", locale: "all", depth: 1 }),
-    ]);
-    for (const g of [hp, cp] as { strings?: Strings; images?: Images }[]) {
+    const hp = await payload.findGlobal({ slug: "homepage", locale: "all", depth: 1 });
+    for (const g of [hp] as { strings?: Strings; images?: Images }[]) {
       for (const row of g?.strings ?? []) {
         if (!row?.key) continue;
         const v = row.value as Record<string, string> | string | undefined;

@@ -60,7 +60,6 @@ export default function AreaContent({ areas }: { areas: AreaData[] }) {
           <nav className="nav-links">
             <Link href="/">{t("nav.home") !== "nav.home" ? t("nav.home") : "Home"}</Link>
             <Link href="/#programs">{t("nav.pt")}</Link>
-            <Link href="/champion">{t("nav.champions")}</Link>
             <Link href="/#tour">{t("nav.contact")}</Link>
           </nav>
           <div className="nav-right">

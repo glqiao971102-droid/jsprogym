@@ -306,6 +306,107 @@
   .t-premium .pt-perks { grid-template-columns: 1fr; }
 }
 
+/* ---------- PT trainers grid ---------- */
+.t-premium .pt-team {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+.t-premium .pt-trainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 28px 18px 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.t-premium .pt-trainer:hover {
+  transform: translateY(-4px);
+  border-color: var(--line2);
+}
+.t-premium .pt-trainer.lead {
+  border-color: var(--gold);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(230, 184, 76, 0.12), transparent 65%),
+    var(--panel);
+  box-shadow: 0 20px 60px -30px rgba(230, 184, 76, 0.6);
+}
+.t-premium .pt-trainer-badge {
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 13px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold-lite), var(--gold-deep));
+  color: #1a1509;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.t-premium .pt-trainer-photo {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 120% at 50% 0%, rgba(230, 184, 76, 0.25), transparent 70%),
+    linear-gradient(160deg, #241c0e, #0d0b08);
+  border: 1px solid var(--gold-deep);
+}
+.t-premium .pt-trainer-photo b {
+  font-family: var(--f-anton), sans-serif;
+  font-size: 34px;
+  color: var(--gold-lite);
+}
+.t-premium .pt-trainer h3 {
+  margin-top: 16px;
+  font-size: 18px;
+  color: var(--text);
+}
+.t-premium .pt-trainer-spec {
+  margin-top: 6px;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  min-height: 2.6em;
+  display: flex;
+  align-items: center;
+}
+.t-premium .pt-trainer p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.55;
+  flex: 1;
+}
+.t-premium .pt-trainer-btn {
+  margin-top: 18px;
+  width: 100%;
+  justify-content: center;
+  padding: 11px 16px;
+  font-size: 12px;
+}
+@media (max-width: 900px) {
+  .t-premium .pt-team { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 620px) {
+  .t-premium .pt-team { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 420px) {
+  .t-premium .pt-team { grid-template-columns: 1fr; }
+}
+
 .t-premium .pt-cta {
   background:
     radial-gradient(60% 90% at 85% 20%, rgba(230, 184, 76, 0.14), transparent 60%),

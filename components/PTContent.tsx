@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import LangSwitcher from "@/components/LangSwitcher";
+import ImagePopup from "@/components/ImagePopup";
 import { useLang } from "@/components/LanguageProvider";
 import type { Lang } from "@/lib/i18n";
 
@@ -165,6 +166,41 @@ const PT: Record<Lang, Record<string, string>> = {
   },
 };
 
+type Trainer = { name: string; initial: string; badge?: string; specialty: string; bio: string };
+const TRAINERS: Trainer[] = [
+  {
+    name: "JSKOO",
+    initial: "J",
+    badge: "Master Coach",
+    specialty: "Bodybuilding & Contest Prep",
+    bio: "15+ years' experience — off-season to peak week.",
+  },
+  {
+    name: "Dewi Lin",
+    initial: "D",
+    specialty: "Women's Fitness · All Ages",
+    bio: "Coaching women of every age — warm and approachable.",
+  },
+  {
+    name: "Darren",
+    initial: "D",
+    specialty: "Bodybuilding-Style Training",
+    bio: "Bodybuilding and body coordination, taught simply.",
+  },
+  {
+    name: "Kate",
+    initial: "K",
+    specialty: "Women's Fitness",
+    bio: "Women's fitness that's fun — never boring.",
+  },
+  {
+    name: "Bliss",
+    initial: "B",
+    specialty: "Functional Training",
+    bio: "Functional training that corrects muscle imbalances.",
+  },
+];
+
 const ICONS: ReactNode[] = [
   <><circle cx="9" cy="7" r="3" strokeWidth="1.6" /><path d="M3 21c0-4 3-6 6-6s6 2 6 6M17 8l2 2 4-4" strokeWidth="1.6" /></>,
   <><path d="M6 3h9a3 3 0 0 1 0 6H6zM6 9h11a3 3 0 0 1 0 6H6zM6 15h8" strokeWidth="1.6" /><path d="M4 3v18" strokeWidth="1.6" /></>,
@@ -176,6 +212,13 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
   const c = PT[lang] || PT.en;
   const heroBg = cover || photos[0]?.url;
   const featPics = [photos[0]?.url, photos[Math.floor(photos.length / 2)]?.url, photos[photos.length - 1]?.url];
+
+  // promo popup — opens shortly after landing on the page
+  const [promoOpen, setPromoOpen] = useState(false);
+  useEffect(() => {
+    const id = setTimeout(() => setPromoOpen(true), 450);
+    return () => clearTimeout(id);
+  }, []);
 
   // lightbox
   const [i, setI] = useState<number | null>(null);
@@ -206,6 +249,13 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
 
   return (
     <div className="t-premium">
+      <ImagePopup
+        open={promoOpen}
+        onClose={() => setPromoOpen(false)}
+        images={["/personal-trainer.jpg", "/personal-trainer.png", "/personal-trainer.jpeg", "/personal-trainer.webp"]}
+        alt="JSPROGYM Personal Trainer session promotion"
+        waText="Hi JSPROGYM! I'm interested in the Personal Trainer session promotion."
+      />
       {/* nav */}
       <header className="nav">
         <div className="wrap nav-in">
@@ -285,9 +335,41 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
         </div>
       </section>
 
+      {/* trainers */}
+      <section className="sec alt" id="trainers">
+        <div className="wrap">
+          <div className="sec-h center r">
+            <div className="eyebrow">Our team</div>
+            <h2>Meet our <span className="gold">trainers</span></h2>
+            <p>Five certified coaches, each with their own specialty — find the right fit for your goals.</p>
+          </div>
+          <div className="pt-team">
+            {TRAINERS.map((tr) => (
+              <div className={`pt-trainer r${tr.badge ? " lead" : ""}`} key={tr.name}>
+                {tr.badge && <span className="pt-trainer-badge">{tr.badge}</span>}
+                <div className="pt-trainer-photo"><b>{tr.initial}</b></div>
+                <h3>{tr.name}</h3>
+                <div className="pt-trainer-spec">{tr.specialty}</div>
+                <p>{tr.bio}</p>
+                <a
+                  className="btn outline pt-trainer-btn"
+                  href={`https://wa.me/${WA}?text=${encodeURIComponent(
+                    `Hi JSPROGYM! I'd like to book a personal training session with ${tr.name}.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Book a session
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* gallery */}
       {photos.length > 0 && (
-        <section className="sec alt">
+        <section className="sec">
           <div className="wrap">
             <div className="sec-h center r">
               <h2>{c.galleryTitle}</h2>

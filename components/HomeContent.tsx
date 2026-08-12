@@ -43,12 +43,18 @@ const EXP: { n: number; cls: string; icon: ReactNode }[] = [
 ];
 
 const PROGRAMS: { n: number; icon: ReactNode }[] = [
+  // 1 — Strength Training: dumbbell
   { n: 1, icon: <path d="M4 9v6M8 7v10M16 7v10M20 9v6M8 12h8" strokeWidth="1.8" /> },
+  // 2 — HIIT & Conditioning: lightning bolt
   { n: 2, icon: <path d="M13 2 4 14h7l-1 8 9-12h-7z" strokeWidth="1.8" /> },
-  { n: 3, icon: <path d="M7 11V7a3 3 0 0 1 6 0M7 11h9a3 3 0 0 1 3 3v2a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-3a2 2 0 0 1 2-2Z" strokeWidth="1.8" /> },
-  { n: 4, icon: <><circle cx="12" cy="5" r="2.2" strokeWidth="1.8" /><path d="M5 21c1.5-5 4-7 7-7s5.5 2 7 7M12 14v-3" strokeWidth="1.8" /></> },
-  { n: 5, icon: <><circle cx="6" cy="17" r="3" strokeWidth="1.8" /><circle cx="18" cy="17" r="3" strokeWidth="1.8" /><path d="M6 17 11 8h4l3 9M11 8 9 6" strokeWidth="1.8" /></> },
-  { n: 6, icon: <><path d="M12 3c2 3 3 5 3 7a3 3 0 0 1-6 0c0-2 1-4 3-7Z" strokeWidth="1.8" /><path d="M5 21c1.5-2 4-3 7-3s5.5 1 7 3" strokeWidth="1.8" /></> },
+  // 3 — Boxing: glove
+  { n: 3, icon: <><path d="M9 6a3 3 0 0 1 6 0v4" strokeWidth="1.8" /><path d="M15 8.5h1.5a2.5 2.5 0 0 1 0 5H15" strokeWidth="1.8" /><path d="M6 9a2 2 0 0 1 2-2h7v6a4 4 0 0 1-4 4H9a3 3 0 0 1-3-3V9Z" strokeWidth="1.8" /><path d="M6 13h9" strokeWidth="1.8" /></> },
+  // 4 — Indoor Ride: bicycle
+  { n: 4, icon: <><circle cx="6" cy="17" r="3" strokeWidth="1.8" /><circle cx="18" cy="17" r="3" strokeWidth="1.8" /><path d="M6 17 11 8h4l3 9M11 8 9 6" strokeWidth="1.8" /></> },
+  // 5 — Cardio Zone: treadmill
+  { n: 5, icon: <><path d="M2 18h13l4-12" strokeWidth="1.8" /><path d="M4 18l1.2-4.5H15.5" strokeWidth="1.8" /><path d="M17.5 10.5H21" strokeWidth="1.8" /></> },
+  // 6 — Recovery Zone: stretching figure
+  { n: 6, icon: <><circle cx="10" cy="4.5" r="1.7" strokeWidth="1.8" /><path d="M10 6.5v6M10 12.5l-3 5M10 12.5l3 5M10 8.5l4-2M10 9l-3-1.5" strokeWidth="1.8" /></> },
 ];
 
 const IG_POSTS = [

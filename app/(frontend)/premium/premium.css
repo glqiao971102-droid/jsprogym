@@ -916,11 +916,30 @@
   display: grid;
   place-items: center;
 }
+.t-premium .mv-media .mv-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.t-premium .mv-media .mv-video-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(70% 60% at 50% 50%, rgba(10, 9, 8, 0.35), transparent 70%),
+    linear-gradient(180deg, rgba(10, 9, 8, 0.5), rgba(10, 9, 8, 0.65));
+}
 .t-premium .mv-media .mk {
+  position: relative;
+  z-index: 2;
   font-family: var(--f-anton), sans-serif;
   font-size: clamp(60px, 12vw, 130px);
   line-height: 0.9;
   text-align: center;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.55);
 }
 .t-premium .mv-media .mk small {
   display: block;

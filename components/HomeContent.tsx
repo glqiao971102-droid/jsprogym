@@ -242,10 +242,18 @@ export default function HomeContent({
       <section className="sec alt" id="group-class">
         <div className="wrap mv">
           <div className="mv-media r">
-            {img("about.panel") && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img className="slot-photo" src={img("about.panel")} alt="" />
-            )}
+            <video
+              className="mv-video"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src="/groupclass.mp4" type="video/mp4" />
+            </video>
+            <div className="mv-video-scrim" />
             <div className="mk">
               JS<span className="gold">PRO</span>
               <Trans id="mv.mk" as="small" />

@@ -425,35 +425,6 @@ export default function HomeContent({
         </div>
       </section>
 
-      {/* blog */}
-      <section className="sec alt" id="blog">
-        <div className="wrap">
-          <div className="sec-h center r">
-            <Trans id="blog.eyebrow" as="div" className="eyebrow" />
-            <Trans id="blog.title" as="h2" />
-            <Trans id="blog.p" as="p" />
-          </div>
-          <div className="blog-grid">
-            {[1, 2, 3].map((n) => (
-              <article className="post r" key={n}>
-                <div className="post-thumb">
-                  {img(`blog.${n}`) && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img className="slot-photo" src={img(`blog.${n}`)} alt="" />
-                  )}
-                  <span>{t(`blog${n}.cat`)}</span>
-                </div>
-                <div className="post-body">
-                  <h3>{t(`blog${n}.t`)}</h3>
-                  <p>{t(`blog${n}.d`)}</p>
-                  <span className="go">{t("blog.readmore")}</span>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* free tour form */}
       <section className="sec tour" id="tour">
         <div className="wrap tour-grid">

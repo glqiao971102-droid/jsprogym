@@ -30,7 +30,6 @@ const NAV: { k: string; href: string }[] = [
   { k: "nav.gc", href: "#programs" },
   { k: "nav.champions", href: "/champion" },
   { k: "nav.membership", href: "/membership" },
-  { k: "nav.rewards", href: "#experience" },
   { k: "nav.reviews", href: "#reviews" },
   { k: "nav.gallery", href: "/area" },
   { k: "nav.blog", href: "#blog" },

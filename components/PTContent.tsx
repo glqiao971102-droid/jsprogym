@@ -13,8 +13,8 @@ type Photo = { url: string; alt: string };
 const PT: Record<Lang, Record<string, string>> = {
   en: {
     heroEyebrow: "Personal Training",
-    heroTitle: 'Train 1-on-1. <span class="gold">Transform for real.</span>',
-    heroSub: "Fully personalised coaching, nutrition and stage-ready competition prep — built entirely around you and your goals.",
+    heroTitle: 'Get stronger. <span class="gold">Move better.</span>',
+    heroSub: "A training plan built for your body, your goals, and your lifestyle.",
     heroCta: "Book a free consultation",
     cue: "Scroll ↓",
     introEyebrow: "Why personal training",
@@ -51,8 +51,8 @@ const PT: Record<Lang, Record<string, string>> = {
   },
   "zh-Hans": {
     heroEyebrow: "私人教练",
-    heroTitle: '一对一训练，<span class="gold">真正蜕变。</span>',
-    heroSub: "完全为你量身定制的训练、饮食，以及登台级别的健美比赛备赛 —— 一切都围绕你和你的目标。",
+    heroTitle: '变得更强，<span class="gold">动得更好。</span>',
+    heroSub: "为你的身体、你的目标和你的生活方式量身打造的训练计划。",
     heroCta: "预约免费咨询",
     cue: "向下滑 ↓",
     introEyebrow: "为什么选私人教练",
@@ -89,8 +89,8 @@ const PT: Record<Lang, Record<string, string>> = {
   },
   "zh-Hant": {
     heroEyebrow: "私人教練",
-    heroTitle: '一對一訓練，<span class="gold">真正蛻變。</span>',
-    heroSub: "完全為你量身打造的訓練、飲食,以及登台級別的健美比賽備賽 —— 一切都圍繞你和你的目標。",
+    heroTitle: '變得更強，<span class="gold">動得更好。</span>',
+    heroSub: "為你的身體、你的目標和你的生活方式量身打造的訓練計劃。",
     heroCta: "預約免費諮詢",
     cue: "向下滑 ↓",
     introEyebrow: "為什麼選私人教練",
@@ -127,8 +127,8 @@ const PT: Record<Lang, Record<string, string>> = {
   },
   ms: {
     heroEyebrow: "Latihan Peribadi",
-    heroTitle: 'Latihan 1-dengan-1. <span class="gold">Transformasi sebenar.</span>',
-    heroSub: "Bimbingan, pemakanan dan persediaan pertandingan yang disesuaikan sepenuhnya — dibina sekeliling anda dan matlamat anda.",
+    heroTitle: 'Jadi lebih kuat. <span class="gold">Bergerak lebih baik.</span>',
+    heroSub: "Pelan latihan yang dibina untuk tubuh, matlamat dan gaya hidup anda.",
     heroCta: "Tempah perundingan percuma",
     cue: "Skrol ↓",
     introEyebrow: "Kenapa latihan peribadi",

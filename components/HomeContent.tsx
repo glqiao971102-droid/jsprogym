@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode, FormEvent } from "react";
+import { useState, type ReactNode, type FormEvent } from "react";
 import Stars from "@/components/Stars";
 import Trans from "@/components/Trans";
 import LangSwitcher from "@/components/LangSwitcher";
 import MerdekaPopup from "@/components/MerdekaPopup";
+import ImagePopup from "@/components/ImagePopup";
 import { useLang } from "@/components/LanguageProvider";
 import type { ReviewData } from "@/lib/reviews";
 import type { Lang } from "@/lib/i18n";
@@ -88,6 +89,7 @@ export default function HomeContent({
   const { t, lang, img } = useLang();
   const heroVideo = img("hero.video") || "/hero.mp4";
   const heroPoster = img("hero.poster") || "/hero-poster.jpg";
+  const [ptOpen, setPtOpen] = useState(false);
 
   const onEnquire = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -108,6 +110,13 @@ export default function HomeContent({
   return (
     <div className="t-premium">
       <MerdekaPopup />
+      <ImagePopup
+        open={ptOpen}
+        onClose={() => setPtOpen(false)}
+        images={["/personal-trainer.jpg", "/personal-trainer.png", "/personal-trainer.jpeg", "/personal-trainer.webp"]}
+        alt="JSPROGYM Personal Trainer session promotion"
+        waText="Hi JSPROGYM! I'm interested in the Personal Trainer session promotion."
+      />
       <div className="progress" />
 
       {/* nav */}
@@ -119,7 +128,18 @@ export default function HomeContent({
           </span>
           <nav className="nav-links">
             {NAV.map((n) =>
-              n.href.startsWith("/") ? (
+              n.k === "nav.pt" ? (
+                <a
+                  href={n.href}
+                  key={n.k}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPtOpen(true);
+                  }}
+                >
+                  {t(n.k)}
+                </a>
+              ) : n.href.startsWith("/") ? (
                 <Link href={n.href} key={n.k}>
                   {t(n.k)}
                 </Link>

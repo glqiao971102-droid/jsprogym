@@ -29,11 +29,9 @@ const FB_URL = "https://web.facebook.com/jsprogym";
 const NAV: { k: string; href: string }[] = [
   { k: "nav.pt", href: "/personal-training" },
   { k: "nav.gc", href: "#programs" },
-  { k: "nav.champions", href: "/champion" },
   { k: "nav.membership", href: "/membership" },
   { k: "nav.reviews", href: "#reviews" },
   { k: "nav.gallery", href: "/area" },
-  { k: "nav.blog", href: "#blog" },
   { k: "nav.contact", href: "#tour" },
 ];
 
@@ -533,9 +531,7 @@ export default function HomeContent({
               <ul>
                 <li><a href="/personal-training">{t("nav.pt")}</a></li>
                 <li><a href="#programs">{t("nav.gc")}</a></li>
-                <li><a href="#experience">{t("nav.rewards")}</a></li>
                 <li><a href="/area">{t("nav.gallery")}</a></li>
-                <li><a href="#blog">{t("nav.blog")}</a></li>
               </ul>
             </div>
           </div>

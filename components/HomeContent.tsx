@@ -220,6 +220,16 @@ export default function HomeContent({
               <div className="mv-sub">{t("mv.vision.sub")}</div>
               <p>{t("mv.vision.p")}</p>
             </div>
+            <a
+              className="btn gold mv-cta r"
+              href={`https://wa.me/${TOUR_WA}?text=${encodeURIComponent(
+                "Hi JSPROGYM! I'd like to sign up for a group class."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("mv.cta")}
+            </a>
           </div>
         </div>
       </section>

@@ -1124,6 +1124,9 @@
   font-size: 24px;
   color: var(--gold-lite);
 }
+.t-premium .mv-cta {
+  margin-top: 26px;
+}
 .t-premium .mv-block .mv-sub {
   margin-top: 6px;
   font-family: var(--f-barlow), sans-serif;

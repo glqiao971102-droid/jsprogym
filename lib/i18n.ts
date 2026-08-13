@@ -42,6 +42,7 @@ export const translations: Record<Lang, Dict> = {
     "exp4.d": "Take a look inside — our floors, studios, recovery suite and the community.",
 
     "mv.mk": "STRONGER TOGETHER",
+    "mv.cta": "Join a class",
     "mv.who": "Who we are",
     "mv.movement": 'Train hard. <span class="gold">Together.</span>',
     "mv.mission.t": "Our Mission",
@@ -161,6 +162,7 @@ export const translations: Record<Lang, Dict> = {
     "exp4.d": "走进来看看 —— 我们的训练区、教室、恢复区和整个社群。",
 
     "mv.mk": "一起变更强",
+    "mv.cta": "立即报名",
     "mv.who": "关于我们",
     "mv.movement": '努力训练，<span class="gold">一起变强。</span>',
     "mv.mission.t": "我们的使命",
@@ -282,6 +284,7 @@ export const translations: Record<Lang, Dict> = {
     "exp4.d": "走進來看看 —— 我們的訓練區、教室、恢復區與整個社群。",
 
     "mv.mk": "一起變更強",
+    "mv.cta": "立即報名",
     "mv.who": "關於我們",
     "mv.movement": '努力訓練，<span class="gold">一起變強。</span>',
     "mv.mission.t": "我們的使命",
@@ -403,6 +406,7 @@ export const translations: Record<Lang, Dict> = {
     "exp4.d": "Intai ke dalam — ruang latihan, studio, ruang pemulihan dan komuniti kami.",
 
     "mv.mk": "LEBIH KUAT BERSAMA",
+    "mv.cta": "Sertai kelas",
     "mv.who": "Siapa kami",
     "mv.movement": 'Berlatih keras. <span class="gold">Bersama.</span>',
     "mv.mission.t": "Misi Kami",

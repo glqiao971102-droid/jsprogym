@@ -290,7 +290,7 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
           <div className="pt-feats">
             {[
               { t: c.f1t, d: c.f1d, pic: featPics[0], icon: ICONS[0], bright: false },
-              { t: c.f2t, d: c.f2d, pic: featPics[1], icon: ICONS[1], bright: false },
+              { t: c.f2t, d: c.f2d, pic: "/nutrition.jpeg", icon: ICONS[1], bright: true },
               { t: c.f3t, d: c.f3d, pic: "/competition-prep.jpeg", icon: ICONS[2], bright: true },
             ].map((f, k) => (
               <div className="pt-feat r" key={k}>

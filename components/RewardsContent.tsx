@@ -141,6 +141,52 @@ export default function RewardsContent() {
         </div>
       </section>
 
+      {/* redeem */}
+      <section className="sec">
+        <div className="wrap">
+          <div className="rw-redeem">
+            <div className="rw-redeem-head">
+              <div className="eyebrow">Redeem</div>
+              <h2>Points that pay you back</h2>
+              <div className="rw-redeem-rate">
+                <b>100 points</b>
+                <span>=</span>
+                <b className="gold">RM5</b>
+              </div>
+            </div>
+            <ul className="rw-redeem-list">
+              <li>Redeem on <b>everything</b> — including your monthly membership renewal.</li>
+              <li>Minimum <b>100 points</b> to start redeeming.</li>
+              <li>No cap — the more you train and spend, the more you save.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* examples */}
+      <section className="sec alt">
+        <div className="wrap">
+          <div className="sec-h center">
+            <div className="eyebrow">See it add up</div>
+            <h2>Your points in action</h2>
+          </div>
+          <div className="rw-table">
+            <div className="rw-row rw-row-head">
+              <span>You do this</span>
+              <span>You earn</span>
+              <span>Worth</span>
+            </div>
+            {EXAMPLES.map((e) => (
+              <div className={`rw-row${e.feature ? " feature" : ""}`} key={e.what}>
+                <span>{e.what}</span>
+                <span>{e.points}</span>
+                <span className="rw-worth">{e.value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* points calculator */}
       <section className="sec" id="calc">
         <div className="wrap">
@@ -186,52 +232,6 @@ export default function RewardsContent() {
                   : "Redeemable on anything — including your membership."}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* redeem */}
-      <section className="sec alt">
-        <div className="wrap">
-          <div className="rw-redeem">
-            <div className="rw-redeem-head">
-              <div className="eyebrow">Redeem</div>
-              <h2>Points that pay you back</h2>
-              <div className="rw-redeem-rate">
-                <b>100 points</b>
-                <span>=</span>
-                <b className="gold">RM5</b>
-              </div>
-            </div>
-            <ul className="rw-redeem-list">
-              <li>Redeem on <b>everything</b> — including your monthly membership renewal.</li>
-              <li>Minimum <b>100 points</b> to start redeeming.</li>
-              <li>No cap — the more you train and spend, the more you save.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* examples */}
-      <section className="sec">
-        <div className="wrap">
-          <div className="sec-h center">
-            <div className="eyebrow">See it add up</div>
-            <h2>Your points in action</h2>
-          </div>
-          <div className="rw-table">
-            <div className="rw-row rw-row-head">
-              <span>You do this</span>
-              <span>You earn</span>
-              <span>Worth</span>
-            </div>
-            {EXAMPLES.map((e) => (
-              <div className={`rw-row${e.feature ? " feature" : ""}`} key={e.what}>
-                <span>{e.what}</span>
-                <span>{e.points}</span>
-                <span className="rw-worth">{e.value}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>

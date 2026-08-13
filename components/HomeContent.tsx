@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import type { ReactNode, FormEvent } from "react";
+import { useState, type ReactNode, type FormEvent } from "react";
 import Stars from "@/components/Stars";
 import Trans from "@/components/Trans";
 import LangSwitcher from "@/components/LangSwitcher";
@@ -35,11 +35,11 @@ const NAV: { k: string; href: string }[] = [
   { k: "nav.contact", href: "#tour" },
 ];
 
-const EXP: { n: number; cls: string; icon: ReactNode }[] = [
-  { n: 1, cls: "e1", icon: <><circle cx="9" cy="7" r="3" strokeWidth="1.6" /><path d="M3 21c0-4 3-6 6-6s6 2 6 6M17 8l2 2 4-4" strokeWidth="1.6" /></> },
-  { n: 2, cls: "e2", icon: <><circle cx="7" cy="6" r="2.4" strokeWidth="1.6" /><circle cx="17" cy="6" r="2.4" strokeWidth="1.6" /><path d="M2 20c0-3 2.5-5 5-5s5 2 5 5M12 20c0-3 2.5-5 5-5s5 2 5 5" strokeWidth="1.6" /></> },
-  { n: 3, cls: "e3", icon: <path d="m12 3 2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" strokeWidth="1.6" /> },
-  { n: 4, cls: "e4", icon: <><rect x="3" y="4" width="18" height="16" rx="2" strokeWidth="1.6" /><path d="M3 16l5-5 4 3 3-3 6 6" strokeWidth="1.6" /><circle cx="8.5" cy="9" r="1.4" strokeWidth="1.6" /></> },
+const EXP: { n: number; cls: string; href: string; icon: ReactNode }[] = [
+  { n: 1, cls: "e1", href: "/personal-training", icon: <><circle cx="9" cy="7" r="3" strokeWidth="1.6" /><path d="M3 21c0-4 3-6 6-6s6 2 6 6M17 8l2 2 4-4" strokeWidth="1.6" /></> },
+  { n: 2, cls: "e2", href: "#group-class", icon: <><circle cx="7" cy="6" r="2.4" strokeWidth="1.6" /><circle cx="17" cy="6" r="2.4" strokeWidth="1.6" /><path d="M2 20c0-3 2.5-5 5-5s5 2 5 5M12 20c0-3 2.5-5 5-5s5 2 5 5" strokeWidth="1.6" /></> },
+  { n: 3, cls: "e3", href: "/rewards", icon: <path d="m12 3 2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" strokeWidth="1.6" /> },
+  { n: 4, cls: "e4", href: "/area", icon: <><rect x="3" y="4" width="18" height="16" rx="2" strokeWidth="1.6" /><path d="M3 16l5-5 4 3 3-3 6 6" strokeWidth="1.6" /><circle cx="8.5" cy="9" r="1.4" strokeWidth="1.6" /></> },
 ];
 
 const PROGRAMS: { n: number; icon: ReactNode }[] = [
@@ -88,6 +88,7 @@ export default function HomeContent({
   const { t, lang, img } = useLang();
   const heroVideo = img("hero.video") || "/hero.mp4";
   const heroPoster = img("hero.poster") || "/hero-poster.jpg";
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const onEnquire = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -135,8 +136,36 @@ export default function HomeContent({
             <a className="btn gold" href="#tour">
               {t("nav.freetour")}
             </a>
+            <button
+              className={`nav-burger${menuOpen ? " open" : ""}`}
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-label="Menu"
+              aria-expanded={menuOpen}
+            >
+              <span /><span /><span />
+            </button>
           </div>
         </div>
+        {menuOpen && (
+          <nav className="nav-mobile">
+            <div className="wrap">
+              {NAV.map((n) =>
+                n.href.startsWith("/") ? (
+                  <Link href={n.href} key={n.k} onClick={() => setMenuOpen(false)}>
+                    {t(n.k)}
+                  </Link>
+                ) : (
+                  <a href={n.href} key={n.k} onClick={() => setMenuOpen(false)}>
+                    {t(n.k)}
+                  </a>
+                )
+              )}
+              <a className="btn gold" href="#tour" onClick={() => setMenuOpen(false)}>
+                {t("nav.freetour")}
+              </a>
+            </div>
+          </nav>
+        )}
       </header>
 
       {/* hero */}
@@ -196,7 +225,7 @@ export default function HomeContent({
           {EXP.map((e) => {
             const photo = img(`exp.${e.n}`);
             return (
-            <a className="exp-card" href="#" key={e.n}>
+            <a className="exp-card" href={e.href} key={e.n}>
               <div className={`exp-img ${e.cls}`}>
                 {photo ? (
                   // eslint-disable-next-line @next/next/no-img-element

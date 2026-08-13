@@ -30,6 +30,7 @@ const NAV: { k: string; href: string }[] = [
   { k: "nav.pt", href: "/personal-training" },
   { k: "nav.gc", href: "#group-class" },
   { k: "nav.membership", href: "/membership" },
+  { k: "nav.rewards", href: "/rewards" },
   { k: "nav.reviews", href: "#reviews" },
   { k: "nav.gallery", href: "/area" },
   { k: "nav.contact", href: "#tour" },

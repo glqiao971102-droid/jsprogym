@@ -1,63 +1,92 @@
 import { getPayload } from "payload";
-import fs from "fs";
-import path from "path";
 import config from "../payload.config";
+import { readdirSync, statSync, mkdirSync, renameSync, existsSync } from "fs";
+import { join } from "path";
+import os from "os";
 
-const WEB =
-  "/private/tmp/claude-501/-Users-gohkheehao-Downloads-led-signboard-website/59ca4250-b138-4741-8da1-57cc9ef6c1fc/scratchpad/web2";
+// Drop photos into ~/Desktop/jspro-photos/<category>/ and run this.
+// <category> can be the area name or slug, e.g. "Environment",
+// "Personal Trainer Class", "Chest", "Ladies Area".
+const BASE = join(os.homedir(), "Desktop", "jspro-photos");
 
-const AREAS = [
-  { slug: "personal-training", order: 1, en: "Personal Training", zhHans: "私人教练", zhHant: "私人教練", ms: "Latihan Peribadi" },
-  { slug: "power-lifting", order: 2, en: "Power Lifting", zhHans: "力量举", zhHant: "力量舉", ms: "Angkat Kuasa" },
-  { slug: "chest", order: 3, en: "Chest", zhHans: "胸部", zhHant: "胸部", ms: "Dada" },
-  { slug: "back", order: 4, en: "Back", zhHans: "背部", zhHant: "背部", ms: "Belakang" },
-  { slug: "shoulder", order: 5, en: "Shoulder", zhHans: "肩部", zhHant: "肩部", ms: "Bahu" },
-  { slug: "bicep-tricep", order: 6, en: "Bicep & Tricep", zhHans: "肱二头 & 肱三头", zhHant: "肱二頭 & 肱三頭", ms: "Bisep & Trisep" },
-  { slug: "leg", order: 7, en: "Leg", zhHans: "腿部", zhHant: "腿部", ms: "Kaki" },
-  { slug: "core", order: 8, en: "Core", zhHans: "核心", zhHant: "核心", ms: "Teras" },
-  { slug: "dumbbell-area", order: 9, en: "Dumbbell Area", zhHans: "哑铃区", zhHant: "啞鈴區", ms: "Kawasan Dumbbell" },
-  { slug: "cardio", order: 10, en: "Cardio", zhHans: "有氧区", zhHant: "有氧區", ms: "Kardio" },
-  { slug: "accessories", order: 11, en: "Accessories", zhHans: "配件区", zhHant: "配件區", ms: "Aksesori" },
-  { slug: "hyrox", order: 12, en: "Hyrox", zhHans: "Hyrox", zhHant: "Hyrox", ms: "Hyrox" },
-  { slug: "ladies-area", order: 13, en: "Ladies Area", zhHans: "女士专区", zhHant: "女士專區", ms: "Kawasan Wanita" },
-];
+const IMG = /\.(jpe?g|png|webp|gif|avif)$/i;
+const slugify = (s: string) =>
+  s.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
+// collect image files at any depth under `dir`, skipping the _done folder
+function walkImages(dir: string): string[] {
+  const out: string[] = [];
+  for (const e of readdirSync(dir)) {
+    if (e === "_done" || e.startsWith(".")) continue;
+    const full = join(dir, e);
+    const st = statSync(full);
+    if (st.isDirectory()) out.push(...walkImages(full));
+    else if (IMG.test(e)) out.push(full);
+  }
+  return out;
+}
 
 const payload = await getPayload({ config });
 
-for (const a of AREAS) {
-  const dir = path.join(WEB, a.slug);
-  const files = fs.existsSync(dir)
-    ? fs.readdirSync(dir).filter((f) => /\.(jpe?g|png)$/i.test(f)).sort()
-    : [];
-  if (!files.length) {
-    console.log(`${a.slug}: (no photos, skipped)`);
-    continue;
-  }
-
-  const mediaIds: number[] = [];
-  for (const f of files) {
-    const doc = await payload.create({
-      collection: "media",
-      data: { alt: `${a.en} — JSPROGYM` },
-      filePath: path.join(dir, f),
-    });
-    mediaIds.push(doc.id as number);
-  }
-
-  const area = await payload.create({
-    collection: "areas",
-    locale: "en",
-    data: { name: a.en, slug: a.slug, order: a.order, cover: mediaIds[0], gallery: mediaIds } as never,
-  });
-  for (const [loc, name] of [
-    ["zh-Hans", a.zhHans],
-    ["zh-Hant", a.zhHant],
-    ["ms", a.ms],
-  ] as const) {
-    await payload.update({ collection: "areas", id: area.id, locale: loc, data: { name } as never });
-  }
-  console.log(`${a.slug}: ${mediaIds.length} photos`);
+if (!existsSync(BASE)) {
+  console.log(`Folder not found: ${BASE}`);
+  console.log(`Create it, then add subfolders named by category and drop photos in.`);
+  process.exit(0);
 }
 
-console.log("done");
+// map slug -> area
+const areasRes = await payload.find({ collection: "areas", limit: 100, depth: 0 });
+const bySlug = new Map<string, any>();
+for (const a of areasRes.docs as any[]) bySlug.set(a.slug, a);
+
+const subdirs = readdirSync(BASE).filter((d) => {
+  try { return statSync(join(BASE, d)).isDirectory() && !d.startsWith("_"); } catch { return false; }
+});
+
+let totalUploaded = 0;
+for (const dir of subdirs) {
+  const slug = slugify(dir);
+  const area = bySlug.get(slug);
+  if (!area) { console.log(`⚠ no matching category for folder "${dir}" (slug: ${slug}) — skipped`); continue; }
+
+  const folder = join(BASE, dir);
+  const files = walkImages(folder);
+  if (!files.length) { console.log(`(${dir}) no images`); continue; }
+
+  const newIds: number[] = [];
+  const doneDir = join(folder, "_done");
+  for (const full of files) {
+    const base = full.split("/").pop() as string;
+    try {
+      const media = await payload.create({
+        collection: "media",
+        filePath: full,
+        data: { alt: String(area.name ?? dir) },
+      } as never);
+      newIds.push((media as any).id);
+      if (!existsSync(doneDir)) mkdirSync(doneDir);
+      let dest = join(doneDir, base);
+      let n = 1;
+      while (existsSync(dest)) dest = join(doneDir, `${n++}-${base}`);
+      renameSync(full, dest); // move so re-runs don't duplicate
+      totalUploaded++;
+      console.log(`  uploaded ${dir}/${base}`);
+    } catch (e) {
+      console.log(`  ✗ failed ${dir}/${base}: ${(e as Error).message}`);
+    }
+  }
+
+  if (newIds.length) {
+    const existing = Array.isArray(area.gallery)
+      ? area.gallery.map((g: any) => (g && typeof g === "object" ? g.id : g))
+      : [];
+    const gallery = [...existing, ...newIds];
+    const data: Record<string, unknown> = { gallery };
+    if (!area.cover) data.cover = newIds[0]; // set a cover if none
+    await payload.update({ collection: "areas", id: area.id, data: data as never });
+    console.log(`✓ ${dir}: +${newIds.length} photos (now ${gallery.length})`);
+  }
+}
+
+console.log(`\ndone — uploaded ${totalUploaded} photos.`);
 process.exit(0);

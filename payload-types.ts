@@ -185,6 +185,10 @@ export interface Area {
   id: number;
   name: string;
   /**
+   * Groups this area under a heading in the gallery. Leave blank to show on its own.
+   */
+  group?: ('Gym Environment' | 'Personal Trainer Class' | 'Group Class' | 'Equipment') | null;
+  /**
    * Auto-filled from the name if left blank.
    */
   slug?: string | null;
@@ -323,6 +327,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface AreasSelect<T extends boolean = true> {
   name?: T;
+  group?: T;
   slug?: T;
   description?: T;
   order?: T;

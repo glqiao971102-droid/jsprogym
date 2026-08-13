@@ -23,6 +23,18 @@ export const Areas: CollectionConfig = {
   fields: [
     { name: "name", type: "text", required: true, localized: true, label: "Area name" },
     {
+      name: "group",
+      type: "select",
+      label: "Gallery group",
+      options: [
+        { label: "Gym Environment", value: "Gym Environment" },
+        { label: "Personal Trainer Class", value: "Personal Trainer Class" },
+        { label: "Group Class", value: "Group Class" },
+        { label: "Equipment", value: "Equipment" },
+      ],
+      admin: { description: "Groups this area under a heading in the gallery. Leave blank to show on its own." },
+    },
+    {
       name: "slug",
       type: "text",
       unique: true,

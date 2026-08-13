@@ -509,8 +509,27 @@
 .t-premium .area-wrap {
   padding-bottom: clamp(60px, 9vw, 110px);
 }
+.t-premium .area-group-head {
+  padding-top: clamp(48px, 7vw, 84px);
+  margin-bottom: 4px;
+}
+.t-premium .area-group-head h2 {
+  font-family: var(--f-anton), sans-serif;
+  font-size: clamp(34px, 6vw, 68px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.t-premium .area-group-head h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 2px;
+  background: var(--grad);
+}
 .t-premium .area-sec {
-  padding-top: clamp(44px, 6vw, 70px);
+  padding-top: clamp(28px, 4vw, 44px);
   scroll-margin-top: 90px;
 }
 .t-premium .area-head {
@@ -521,9 +540,15 @@
   padding-bottom: 14px;
   margin-bottom: 22px;
 }
-.t-premium .area-head h2 {
-  font-size: clamp(26px, 4vw, 44px);
+.t-premium .area-head h3 {
+  font-size: clamp(22px, 3vw, 32px);
   color: var(--gold-lite);
+}
+.t-premium .area-head-solo {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-top: -6px;
+  margin-bottom: 22px;
 }
 .t-premium .area-head span {
   color: var(--muted);

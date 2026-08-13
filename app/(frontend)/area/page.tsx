@@ -34,6 +34,7 @@ async function loadAreas(): Promise<AreaData[]> {
         return {
           slug: String(a.slug ?? ""),
           name: (a.name ?? {}) as AreaData["name"],
+          group: String(a.group ?? ""),
           photos,
         };
       })

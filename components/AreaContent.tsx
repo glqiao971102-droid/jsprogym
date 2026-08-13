@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Trans from "@/components/Trans";
 import SiteNav from "@/components/SiteNav";
@@ -11,6 +11,7 @@ export type Photo = { url: string; alt: string };
 export type AreaData = {
   slug: string;
   name: Partial<Record<Lang, string>>;
+  group: string;
   photos: Photo[];
 };
 
@@ -62,34 +63,55 @@ export default function AreaContent({ areas }: { areas: AreaData[] }) {
           </h1>
           <p className="r">
             Step inside JSPROGYM — explore every zone, from the free-weight floor
-            to Hyrox and personal training. Tap any photo to view it full-size.
+            to group classes and recovery. Tap any photo to view it full-size.
           </p>
         </div>
       </section>
 
-      {/* per-area galleries */}
+      {/* per-area galleries, grouped under a heading */}
       <div className="wrap area-wrap">
-        {areas.map((a, ai) => (
-          <section className="area-sec" id={a.slug} key={a.slug}>
-            <div className="area-head">
-              <h2>{nameOf(a)}</h2>
-              <span>{a.photos.length} photos</span>
-            </div>
-            <div className="area-grid">
-              {a.photos.map((p, i) => (
-                <button
-                  className="area-cell"
-                  key={p.url + i}
-                  onClick={() => setBox({ area: ai, i })}
-                  aria-label={`Open ${nameOf(a)} photo ${i + 1}`}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.url} alt={p.alt} loading="lazy" decoding="async" />
-                </button>
-              ))}
-            </div>
-          </section>
-        ))}
+        {areas.map((a, ai) => {
+          const prevGroup = ai > 0 ? areas[ai - 1].group : "";
+          const showGroupHead = !!a.group && a.group !== prevGroup;
+          // Groups with more than one area (e.g. Equipment) get per-area
+          // sub-headings. A single-area group is its own big heading.
+          const groupSize = a.group ? areas.filter((x) => x.group === a.group).length : 1;
+          const showSubHead = !a.group || groupSize > 1;
+          return (
+            <Fragment key={a.slug}>
+              {showGroupHead && (
+                <div className="area-group-head">
+                  <h2>{a.group}</h2>
+                </div>
+              )}
+              <section className="area-sec" id={a.slug}>
+                {showSubHead ? (
+                  <div className="area-head">
+                    <h3>{nameOf(a)}</h3>
+                    <span>{a.photos.length} photos</span>
+                  </div>
+                ) : (
+                  <div className="area-head area-head-solo">
+                    <span>{a.photos.length} photos</span>
+                  </div>
+                )}
+                <div className="area-grid">
+                  {a.photos.map((p, i) => (
+                    <button
+                      className="area-cell"
+                      key={p.url + i}
+                      onClick={() => setBox({ area: ai, i })}
+                      aria-label={`Open ${nameOf(a)} photo ${i + 1}`}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={p.url} alt={p.alt} loading="lazy" decoding="async" />
+                    </button>
+                  ))}
+                </div>
+              </section>
+            </Fragment>
+          );
+        })}
       </div>
 
       {/* lightbox */}

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Trans from "@/components/Trans";
-import LangSwitcher from "@/components/LangSwitcher";
+import SiteNav from "@/components/SiteNav";
 import { useLang } from "@/components/LanguageProvider";
 import type { Lang } from "@/lib/i18n";
 
@@ -51,25 +51,7 @@ export default function AreaContent({ areas }: { areas: AreaData[] }) {
   return (
     <div className="t-premium">
       {/* nav */}
-      <header className="nav">
-        <div className="wrap nav-in">
-          <Link href="/" className="logo">
-            <span className="dot" />
-            JSPROGYM
-          </Link>
-          <nav className="nav-links">
-            <Link href="/">{t("nav.home") !== "nav.home" ? t("nav.home") : "Home"}</Link>
-            <Link href="/#programs">{t("nav.pt")}</Link>
-            <Link href="/#tour">{t("nav.contact")}</Link>
-          </nav>
-          <div className="nav-right">
-            <LangSwitcher />
-            <Link className="btn gold" href="/#tour">
-              {t("nav.freeTour")}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteNav />
 
       {/* header (background is left for you to style) */}
       <section className="area-hero">

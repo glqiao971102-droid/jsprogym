@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
-import LangSwitcher from "@/components/LangSwitcher";
+import SiteNav from "@/components/SiteNav";
 import ImagePopup from "@/components/ImagePopup";
 import { useLang } from "@/components/LanguageProvider";
 import type { Lang } from "@/lib/i18n";
@@ -257,19 +257,7 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
         waText="Hi JSPROGYM! I'm interested in the Personal Trainer session promotion."
       />
       {/* nav */}
-      <header className="nav">
-        <div className="wrap nav-in">
-          <Link href="/" className="logo"><span className="dot" />JSPROGYM</Link>
-          <nav className="nav-links">
-            <Link href="/">{c.home}</Link>
-            <Link href="/area">Gallery</Link>
-          </nav>
-          <div className="nav-right">
-            <LangSwitcher />
-            <a className="btn gold" href="#pt-cta">{c.heroCta}</a>
-          </div>
-        </div>
-      </header>
+      <SiteNav />
 
       {/* hero */}
       <section className="pt-hero">

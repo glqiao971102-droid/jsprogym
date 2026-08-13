@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import LangSwitcher from "@/components/LangSwitcher";
-import { useLang } from "@/components/LanguageProvider";
+import SiteNav from "@/components/SiteNav";
 
 const TOUR_WA = "60137111613";
 
@@ -39,7 +38,6 @@ function num(v: string) {
 }
 
 export default function RewardsContent() {
-  const { t } = useLang();
 
   // points calculator
   const [spend, setSpend] = useState(219);
@@ -54,25 +52,7 @@ export default function RewardsContent() {
       <div className="progress" />
 
       {/* nav */}
-      <header className="nav">
-        <div className="wrap nav-in">
-          <Link href="/" className="logo">
-            <span className="dot" />
-            JSPROGYM
-          </Link>
-          <nav className="nav-links">
-            <Link href="/">{t("nav.home")}</Link>
-            <Link href="/membership">{t("nav.membership")}</Link>
-            <a href="#how">Rewards</a>
-          </nav>
-          <div className="nav-right">
-            <LangSwitcher />
-            <Link className="btn gold" href="/#tour">
-              {t("nav.freetour")}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteNav />
 
       {/* hero */}
       <section className="champ-hero">

@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ReactNode, type FormEvent } from "react";
+import type { ReactNode, FormEvent } from "react";
 import Stars from "@/components/Stars";
 import Trans from "@/components/Trans";
-import LangSwitcher from "@/components/LangSwitcher";
+import SiteNav from "@/components/SiteNav";
 import MerdekaPopup from "@/components/MerdekaPopup";
 import { useLang } from "@/components/LanguageProvider";
 import type { ReviewData } from "@/lib/reviews";
@@ -26,15 +26,6 @@ const IG_HANDLE = "jspro_gym";
 const IG_URL = "https://www.instagram.com/jspro_gym/";
 const FB_URL = "https://web.facebook.com/jsprogym";
 
-const NAV: { k: string; href: string }[] = [
-  { k: "nav.pt", href: "/personal-training" },
-  { k: "nav.gc", href: "#group-class" },
-  { k: "nav.membership", href: "/membership" },
-  { k: "nav.rewards", href: "/rewards" },
-  { k: "nav.reviews", href: "#reviews" },
-  { k: "nav.gallery", href: "/area" },
-  { k: "nav.contact", href: "#tour" },
-];
 
 const EXP: { n: number; cls: string; href: string; icon: ReactNode }[] = [
   { n: 1, cls: "e1", href: "/personal-training", icon: <><circle cx="9" cy="7" r="3" strokeWidth="1.6" /><path d="M3 21c0-4 3-6 6-6s6 2 6 6M17 8l2 2 4-4" strokeWidth="1.6" /></> },
@@ -89,7 +80,6 @@ export default function HomeContent({
   const { t, lang, img } = useLang();
   const heroVideo = img("hero.video") || "/hero.mp4";
   const heroPoster = img("hero.poster") || "/hero-poster.jpg";
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const onEnquire = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -113,61 +103,7 @@ export default function HomeContent({
       <div className="progress" />
 
       {/* nav */}
-      <header className="nav">
-        <div className="wrap nav-in">
-          <span className="logo">
-            <span className="dot" />
-            JSPROGYM
-          </span>
-          <nav className="nav-links">
-            {NAV.map((n) =>
-              n.href.startsWith("/") ? (
-                <Link href={n.href} key={n.k}>
-                  {t(n.k)}
-                </Link>
-              ) : (
-                <a href={n.href} key={n.k}>
-                  {t(n.k)}
-                </a>
-              )
-            )}
-          </nav>
-          <div className="nav-right">
-            <LangSwitcher />
-            <a className="btn gold" href="#tour">
-              {t("nav.freetour")}
-            </a>
-            <button
-              className={`nav-burger${menuOpen ? " open" : ""}`}
-              onClick={() => setMenuOpen((o) => !o)}
-              aria-label="Menu"
-              aria-expanded={menuOpen}
-            >
-              <span /><span /><span />
-            </button>
-          </div>
-        </div>
-        {menuOpen && (
-          <nav className="nav-mobile">
-            <div className="wrap">
-              {NAV.map((n) =>
-                n.href.startsWith("/") ? (
-                  <Link href={n.href} key={n.k} onClick={() => setMenuOpen(false)}>
-                    {t(n.k)}
-                  </Link>
-                ) : (
-                  <a href={n.href} key={n.k} onClick={() => setMenuOpen(false)}>
-                    {t(n.k)}
-                  </a>
-                )
-              )}
-              <a className="btn gold" href="#tour" onClick={() => setMenuOpen(false)}>
-                {t("nav.freetour")}
-              </a>
-            </div>
-          </nav>
-        )}
-      </header>
+      <SiteNav />
 
       {/* hero */}
       <section className="hero">

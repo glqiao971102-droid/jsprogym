@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import LangSwitcher from "@/components/LangSwitcher";
-import { useLang } from "@/components/LanguageProvider";
+import SiteNav from "@/components/SiteNav";
 
 // Enquiry WhatsApp: 013-711 1613 -> international 6013-711 1613
 const TOUR_WA = "60137111613";
@@ -35,32 +34,13 @@ function money(n: number) {
 }
 
 export default function MembershipContent() {
-  const { t } = useLang();
 
   return (
     <div className="t-premium">
       <div className="progress" />
 
       {/* nav */}
-      <header className="nav">
-        <div className="wrap nav-in">
-          <Link href="/" className="logo">
-            <span className="dot" />
-            JSPROGYM
-          </Link>
-          <nav className="nav-links">
-            <Link href="/#experience">{t("nav.home")}</Link>
-            <Link href="/#programs">{t("nav.programs")}</Link>
-            <a href="#packages">{t("nav.membership")}</a>
-          </nav>
-          <div className="nav-right">
-            <LangSwitcher />
-            <Link className="btn gold" href="/#tour">
-              {t("nav.freetour")}
-            </Link>
-          </div>
-        </div>
-      </header>
+      <SiteNav />
 
       {/* hero */}
       <section className="champ-hero">

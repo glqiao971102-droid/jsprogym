@@ -39,13 +39,15 @@ function num(v: string) {
 
 export default function RewardsContent() {
 
-  // points calculator
-  const [spend, setSpend] = useState(219);
-  const [days, setDays] = useState(12);
-  const [referrals, setReferrals] = useState(1);
-  const [bday, setBday] = useState(0);
-  const points = spend * 1 + days * 10 + referrals * 500 + bday * 2;
+  // points calculator — keep inputs as strings so a field can be cleared
+  const [spend, setSpend] = useState("219");
+  const [days, setDays] = useState("12");
+  const [referrals, setReferrals] = useState("1");
+  const [bday, setBday] = useState("0");
+  const points = num(spend) * 1 + num(days) * 10 + num(referrals) * 500 + num(bday) * 2;
   const value = Math.floor(points / 100) * 5;
+  // allow only digits (and an empty string)
+  const onlyDigits = (v: string) => v.replace(/[^0-9]/g, "");
 
   return (
     <div className="t-premium">
@@ -179,22 +181,22 @@ export default function RewardsContent() {
             <div className="rw-calc-inputs">
               <label className="rw-field">
                 <span>Monthly spend (RM)</span>
-                <input type="number" min="0" inputMode="numeric" value={spend} onChange={(e) => setSpend(num(e.target.value))} />
+                <input type="text" inputMode="numeric" value={spend} onChange={(e) => setSpend(onlyDigits(e.target.value))} />
                 <em>× 1 pt</em>
               </label>
               <label className="rw-field">
                 <span>Check-in days</span>
-                <input type="number" min="0" inputMode="numeric" value={days} onChange={(e) => setDays(num(e.target.value))} />
+                <input type="text" inputMode="numeric" value={days} onChange={(e) => setDays(onlyDigits(e.target.value))} />
                 <em>× 10 pts</em>
               </label>
               <label className="rw-field">
                 <span>Friends referred</span>
-                <input type="number" min="0" inputMode="numeric" value={referrals} onChange={(e) => setReferrals(num(e.target.value))} />
+                <input type="text" inputMode="numeric" value={referrals} onChange={(e) => setReferrals(onlyDigits(e.target.value))} />
                 <em>× 500 pts</em>
               </label>
               <label className="rw-field">
                 <span>Birthday spend (RM)</span>
-                <input type="number" min="0" inputMode="numeric" value={bday} onChange={(e) => setBday(num(e.target.value))} />
+                <input type="text" inputMode="numeric" value={bday} onChange={(e) => setBday(onlyDigits(e.target.value))} />
                 <em>× 2 pts</em>
               </label>
             </div>

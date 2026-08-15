@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
 import SiteNav from "@/components/SiteNav";
 import ImagePopup from "@/components/ImagePopup";
@@ -36,6 +36,10 @@ const PT: Record<Lang, Record<string, string>> = {
     perk6: "Direct coach support",
     galleryTitle: "Inside our sessions",
     gallerySub: "Real members, real coaching, real results.",
+    galleryCtaEyebrow: "See it for yourself",
+    galleryCtaTitle: 'Real coaching. <span class="gold">Real results.</span>',
+    galleryCtaText: "Step inside our personal training sessions — real members, real sweat, real progress. See the moments that make JSPROGYM.",
+    galleryCtaBtn: "View the photo gallery",
     ctaEyebrow: "Ready to start?",
     ctaTitle: 'Your transformation <span class="gold">starts here</span>',
     ctaP: "Tell us your goal and we'll build your plan. Leave your details — we'll reach out on WhatsApp.",
@@ -74,6 +78,10 @@ const PT: Record<Lang, Record<string, string>> = {
     perk6: "教练随时支持",
     galleryTitle: "训练现场",
     gallerySub: "真实的会员,真实的指导,真实的成果。",
+    galleryCtaEyebrow: "亲眼看看",
+    galleryCtaTitle: '真实指导,<span class="gold">真实成果。</span>',
+    galleryCtaText: "走进我们的私教训练现场 —— 真实的会员、真实的汗水、真实的进步。看看属于 JSPROGYM 的精彩瞬间。",
+    galleryCtaBtn: "查看照片相册",
     ctaEyebrow: "准备好了吗?",
     ctaTitle: '你的蜕变<span class="gold">从这里开始</span>',
     ctaP: "告诉我们你的目标,我们为你制定计划。留下你的资料,我们会通过 WhatsApp 联系你。",
@@ -112,6 +120,10 @@ const PT: Record<Lang, Record<string, string>> = {
     perk6: "教練隨時支援",
     galleryTitle: "訓練現場",
     gallerySub: "真實的會員,真實的指導,真實的成果。",
+    galleryCtaEyebrow: "親眼看看",
+    galleryCtaTitle: '真實指導,<span class="gold">真實成果。</span>',
+    galleryCtaText: "走進我們的私教訓練現場 —— 真實的會員、真實的汗水、真實的進步。看看屬於 JSPROGYM 的精彩瞬間。",
+    galleryCtaBtn: "查看照片相簿",
     ctaEyebrow: "準備好了嗎?",
     ctaTitle: '你的蛻變<span class="gold">從這裡開始</span>',
     ctaP: "告訴我們你的目標,我們為你制定計劃。留下你的資料,我們會透過 WhatsApp 聯繫你。",
@@ -150,6 +162,10 @@ const PT: Record<Lang, Record<string, string>> = {
     perk6: "Sokongan jurulatih terus",
     galleryTitle: "Dalam sesi kami",
     gallerySub: "Ahli sebenar, bimbingan sebenar, hasil sebenar.",
+    galleryCtaEyebrow: "Lihat sendiri",
+    galleryCtaTitle: 'Bimbingan sebenar. <span class="gold">Hasil sebenar.</span>',
+    galleryCtaText: "Langkah masuk ke sesi latihan peribadi kami — ahli sebenar, peluh sebenar, kemajuan sebenar. Lihat detik-detik JSPROGYM.",
+    galleryCtaBtn: "Lihat galeri foto",
     ctaEyebrow: "Sedia untuk mula?",
     ctaTitle: 'Transformasi anda <span class="gold">bermula di sini</span>',
     ctaP: "Beritahu kami matlamat anda dan kami bina pelan anda. Tinggalkan butiran — kami akan hubungi melalui WhatsApp.",
@@ -219,22 +235,6 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
     const id = setTimeout(() => setPromoOpen(true), 450);
     return () => clearTimeout(id);
   }, []);
-
-  // lightbox
-  const [i, setI] = useState<number | null>(null);
-  const close = useCallback(() => setI(null), []);
-  const move = useCallback((d: number) => setI((p) => (p === null ? p : (p + d + photos.length) % photos.length)), [photos.length]);
-  useEffect(() => {
-    if (i === null) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowRight") move(1);
-      else if (e.key === "ArrowLeft") move(-1);
-    };
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = ""; window.removeEventListener("keydown", onKey); };
-  }, [i, close, move]);
 
   const onEnquire = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -355,25 +355,22 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
         </div>
       </section>
 
-      {/* gallery */}
-      {photos.length > 0 && (
-        <section className="sec">
-          <div className="wrap">
-            <div className="sec-h center r">
-              <h2>{c.galleryTitle}</h2>
-              <p>{c.gallerySub}</p>
-            </div>
-            <div className="area-grid">
-              {photos.map((p, k) => (
-                <button className="area-cell" key={p.url + k} onClick={() => setI(k)} aria-label={`Photo ${k + 1}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.url} alt={p.alt} loading="lazy" decoding="async" />
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* gallery call-to-action */}
+      <section className="sec pt-gallery-cta">
+        <div className="wrap sec-h center r" style={{ maxWidth: 660 }}>
+          <div className="eyebrow">{c.galleryCtaEyebrow}</div>
+          <h2 dangerouslySetInnerHTML={{ __html: c.galleryCtaTitle }} />
+          <p>{c.galleryCtaText}</p>
+          <Link className="btn gold pt-gallery-btn" href="/area#personal-trainer-class">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="14" rx="2" />
+              <circle cx="12" cy="13" r="3.2" />
+              <path d="M8 6l1.5-2h5L16 6" />
+            </svg>
+            {c.galleryCtaBtn}
+          </Link>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="pt-cta" id="pt-cta">
@@ -411,18 +408,6 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
           <Link href="/" className="back">{c.back}</Link>
         </div>
       </footer>
-
-      {/* lightbox */}
-      {i !== null && photos[i] && (
-        <div className="lightbox" onClick={close} role="dialog" aria-modal="true">
-          <button className="lb-close" onClick={close} aria-label="Close">✕</button>
-          <button className="lb-arrow prev" onClick={(e) => { e.stopPropagation(); move(-1); }} aria-label="Previous">‹</button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="lb-img" src={photos[i].url} alt={photos[i].alt} onClick={(e) => e.stopPropagation()} />
-          <button className="lb-arrow next" onClick={(e) => { e.stopPropagation(); move(1); }} aria-label="Next">›</button>
-          <div className="lb-count">{i + 1} / {photos.length}</div>
-        </div>
-      )}
     </div>
   );
 }

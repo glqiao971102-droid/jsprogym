@@ -29,6 +29,7 @@ export const Areas: CollectionConfig = {
       options: [
         { label: "Gym Environment", value: "Gym Environment" },
         { label: "Personal Trainer Class", value: "Personal Trainer Class" },
+        { label: "Before & After", value: "Before & After" },
         { label: "Group Class", value: "Group Class" },
         { label: "Equipment", value: "Equipment" },
       ],

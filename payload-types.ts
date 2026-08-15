@@ -187,7 +187,7 @@ export interface Area {
   /**
    * Groups this area under a heading in the gallery. Leave blank to show on its own.
    */
-  group?: ('Gym Environment' | 'Personal Trainer Class' | 'Group Class' | 'Equipment') | null;
+  group?: ('Gym Environment' | 'Personal Trainer Class' | 'Before & After' | 'Group Class' | 'Equipment') | null;
   /**
    * Auto-filled from the name if left blank.
    */

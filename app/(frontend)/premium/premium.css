@@ -2566,16 +2566,24 @@
 /* PT — gallery call-to-action button */
 .t-premium .pt-gallery-cta h2 { margin-top: 10px; }
 .t-premium .pt-gallery-cta p { margin-top: 16px; }
-.t-premium .pt-gallery-btn {
+.t-premium .pt-gallery-btns {
   margin-top: 30px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.t-premium .pt-gallery-btn {
   gap: 12px;
-  padding: 18px 40px;
+  padding: 18px 36px;
   font-size: 16px;
   border-radius: 999px;
+}
+.t-premium .pt-gallery-btn svg { flex: none; }
+.t-premium .btn.gold.pt-gallery-btn {
   box-shadow: 0 14px 40px rgba(230, 184, 76, 0.35);
   animation: ptGlow 2.6s ease-in-out infinite;
 }
-.t-premium .pt-gallery-btn svg { flex: none; }
 @keyframes ptGlow {
   0%, 100% { box-shadow: 0 14px 40px rgba(230, 184, 76, 0.32); }
   50% { box-shadow: 0 16px 52px rgba(230, 184, 76, 0.6); }
@@ -2584,5 +2592,5 @@
   transform: translateY(-3px) scale(1.02);
 }
 @media (prefers-reduced-motion: reduce) {
-  .t-premium .pt-gallery-btn { animation: none; }
+  .t-premium .btn.gold.pt-gallery-btn { animation: none; }
 }

@@ -40,6 +40,7 @@ const PT: Record<Lang, Record<string, string>> = {
     galleryCtaTitle: 'Real coaching. <span class="gold">Real results.</span>',
     galleryCtaText: "Step inside our personal training sessions — real members, real sweat, real progress. See the moments that make JSPROGYM.",
     galleryCtaBtn: "View the photo gallery",
+    galleryCtaBtn2: "Client before & after",
     ctaEyebrow: "Ready to start?",
     ctaTitle: 'Your transformation <span class="gold">starts here</span>',
     ctaP: "Tell us your goal and we'll build your plan. Leave your details — we'll reach out on WhatsApp.",
@@ -82,6 +83,7 @@ const PT: Record<Lang, Record<string, string>> = {
     galleryCtaTitle: '真实指导,<span class="gold">真实成果。</span>',
     galleryCtaText: "走进我们的私教训练现场 —— 真实的会员、真实的汗水、真实的进步。看看属于 JSPROGYM 的精彩瞬间。",
     galleryCtaBtn: "查看照片相册",
+    galleryCtaBtn2: "客户前后对比",
     ctaEyebrow: "准备好了吗?",
     ctaTitle: '你的蜕变<span class="gold">从这里开始</span>',
     ctaP: "告诉我们你的目标,我们为你制定计划。留下你的资料,我们会通过 WhatsApp 联系你。",
@@ -124,6 +126,7 @@ const PT: Record<Lang, Record<string, string>> = {
     galleryCtaTitle: '真實指導,<span class="gold">真實成果。</span>',
     galleryCtaText: "走進我們的私教訓練現場 —— 真實的會員、真實的汗水、真實的進步。看看屬於 JSPROGYM 的精彩瞬間。",
     galleryCtaBtn: "查看照片相簿",
+    galleryCtaBtn2: "客戶前後對比",
     ctaEyebrow: "準備好了嗎?",
     ctaTitle: '你的蛻變<span class="gold">從這裡開始</span>',
     ctaP: "告訴我們你的目標,我們為你制定計劃。留下你的資料,我們會透過 WhatsApp 聯繫你。",
@@ -166,6 +169,7 @@ const PT: Record<Lang, Record<string, string>> = {
     galleryCtaTitle: 'Bimbingan sebenar. <span class="gold">Hasil sebenar.</span>',
     galleryCtaText: "Langkah masuk ke sesi latihan peribadi kami — ahli sebenar, peluh sebenar, kemajuan sebenar. Lihat detik-detik JSPROGYM.",
     galleryCtaBtn: "Lihat galeri foto",
+    galleryCtaBtn2: "Sebelum & selepas klien",
     ctaEyebrow: "Sedia untuk mula?",
     ctaTitle: 'Transformasi anda <span class="gold">bermula di sini</span>',
     ctaP: "Beritahu kami matlamat anda dan kami bina pelan anda. Tinggalkan butiran — kami akan hubungi melalui WhatsApp.",
@@ -361,14 +365,24 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
           <div className="eyebrow">{c.galleryCtaEyebrow}</div>
           <h2 dangerouslySetInnerHTML={{ __html: c.galleryCtaTitle }} />
           <p>{c.galleryCtaText}</p>
-          <Link className="btn gold pt-gallery-btn" href="/area#personal-trainer-class">
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <rect x="3" y="6" width="18" height="14" rx="2" />
-              <circle cx="12" cy="13" r="3.2" />
-              <path d="M8 6l1.5-2h5L16 6" />
-            </svg>
-            {c.galleryCtaBtn}
-          </Link>
+          <div className="pt-gallery-btns">
+            <Link className="btn gold pt-gallery-btn" href="/area#personal-trainer-class">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="3" y="6" width="18" height="14" rx="2" />
+                <circle cx="12" cy="13" r="3.2" />
+                <path d="M8 6l1.5-2h5L16 6" />
+              </svg>
+              {c.galleryCtaBtn}
+            </Link>
+            <Link className="btn outline pt-gallery-btn" href="/area#before-after">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 4v16" />
+                <path d="M7 9l-3 3 3 3" />
+                <path d="M17 9l3 3-3 3" />
+              </svg>
+              {c.galleryCtaBtn2}
+            </Link>
+          </div>
         </div>
       </section>
 

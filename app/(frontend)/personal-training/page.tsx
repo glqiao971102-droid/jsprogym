@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "1-on-1 personal training at JSPROGYM — personalised coaching, nutrition and bodybuilding competition prep. Book a free consultation.",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // ISR: cache the page, refresh from the CMS at most once a minute
 
 async function loadPT(): Promise<{ photos: { url: string; alt: string }[]; cover: string | null }> {
   try {

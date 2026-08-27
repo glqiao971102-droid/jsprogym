@@ -5,7 +5,7 @@ import { getReviews } from "@/lib/reviews";
 import type { Lang } from "@/lib/i18n";
 
 // Content comes from Payload, so render fresh each request (admin edits show up).
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // ISR: cache the page, refresh from the CMS at most once a minute
 
 async function loadAreaCovers(): Promise<AreaCover[]> {
   try {

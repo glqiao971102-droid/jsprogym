@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Explore every training zone at JSPROGYM — photo gallery by area.",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // ISR: cache the page, refresh from the CMS at most once a minute
 
 async function loadAreas(): Promise<AreaData[]> {
   try {

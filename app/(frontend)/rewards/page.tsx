@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "Earn JSPROGYM reward points every time you spend and every day you train. Redeem points for real savings on anything — including your membership.",
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60; // ISR: cache the page, refresh from the CMS at most once a minute
 
 export default function Page() {
   return <RewardsContent />;

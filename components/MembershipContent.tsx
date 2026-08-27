@@ -98,7 +98,7 @@ export default function MembershipContent() {
           <div className="mem-info">
             <div className="mem-info-tile">
               <div className="mem-info-label">1st Registration Fee</div>
-              <div className="mem-info-value gold">{money(60)}</div>
+              <div className="mem-info-value gold">{money(100)}</div>
               <div className="mem-info-note">One-time, for new members</div>
             </div>
             <div className="mem-info-tile">

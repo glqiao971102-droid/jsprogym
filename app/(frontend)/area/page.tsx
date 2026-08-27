@@ -27,10 +27,14 @@ async function loadAreas(): Promise<AreaData[]> {
         const photos = (gallery as unknown[])
           .map((m) =>
             m && typeof m === "object" && "url" in m
-              ? { url: String((m as { url?: string }).url ?? ""), alt: String((m as { alt?: string }).alt ?? "") }
+              ? {
+                  url: String((m as { url?: string }).url ?? ""),
+                  alt: String((m as { alt?: string }).alt ?? ""),
+                  video: String((m as { mimeType?: string }).mimeType ?? "").startsWith("video"),
+                }
               : null
           )
-          .filter((p): p is { url: string; alt: string } => !!p && !!p.url);
+          .filter((p): p is { url: string; alt: string; video: boolean } => !!p && !!p.url);
         return {
           slug: String(a.slug ?? ""),
           name: (a.name ?? {}) as AreaData["name"],

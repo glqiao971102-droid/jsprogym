@@ -7,7 +7,7 @@ import SiteNav from "@/components/SiteNav";
 import { useLang } from "@/components/LanguageProvider";
 import type { Lang } from "@/lib/i18n";
 
-export type Photo = { url: string; alt: string };
+export type Photo = { url: string; alt: string; video?: boolean };
 export type AreaData = {
   slug: string;
   name: Partial<Record<Lang, string>>;
@@ -98,13 +98,22 @@ export default function AreaContent({ areas }: { areas: AreaData[] }) {
                 <div className="area-grid">
                   {a.photos.map((p, i) => (
                     <button
-                      className="area-cell"
+                      className={`area-cell${p.video ? " is-video" : ""}`}
                       key={p.url + i}
                       onClick={() => setBox({ area: ai, i })}
-                      aria-label={`Open ${nameOf(a)} photo ${i + 1}`}
+                      aria-label={`Open ${nameOf(a)} ${p.video ? "video" : "photo"} ${i + 1}`}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={p.url} alt={p.alt} loading="lazy" decoding="async" />
+                      {p.video ? (
+                        <>
+                          <video src={p.url} muted loop playsInline autoPlay preload="metadata" />
+                          <span className="area-cell-play" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                          </span>
+                        </>
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={p.url} alt={p.alt} loading="lazy" decoding="async" />
+                      )}
                     </button>
                   ))}
                 </div>
@@ -130,13 +139,25 @@ export default function AreaContent({ areas }: { areas: AreaData[] }) {
           >
             ‹
           </button>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="lb-img"
-            src={current.url}
-            alt={current.alt}
-            onClick={(e) => e.stopPropagation()}
-          />
+          {current.video ? (
+            <video
+              className="lb-img"
+              src={current.url}
+              controls
+              autoPlay
+              loop
+              playsInline
+              onClick={(e) => e.stopPropagation()}
+            />
+          ) : (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              className="lb-img"
+              src={current.url}
+              alt={current.alt}
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
           <button
             className="lb-arrow next"
             onClick={(e) => {

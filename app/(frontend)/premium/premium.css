@@ -571,12 +571,35 @@
   background: var(--bg2);
   cursor: pointer;
 }
-.t-premium .area-cell img {
+.t-premium .area-cell img,
+.t-premium .area-cell video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease, opacity 0.3s;
 }
+.t-premium .area-cell:hover video {
+  transform: scale(1.06);
+}
+.t-premium .area-cell-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(10, 9, 8, 0.55);
+  border: 1px solid rgba(230, 184, 76, 0.6);
+  color: var(--gold-lite);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+.t-premium .area-cell-play svg { margin-left: 3px; }
 .t-premium .area-cell::after {
   content: "";
   position: absolute;

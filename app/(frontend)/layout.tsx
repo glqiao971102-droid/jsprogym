@@ -7,10 +7,30 @@ import type { Lang } from "@/lib/i18n";
 import "./globals.css";
 import "./premium/premium.css";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://jsprogym.vercel.app";
+
 export const metadata: Metadata = {
-  title: "JSPROGYM — Fitness for Everyone",
+  metadataBase: new URL(SITE_URL),
+  title: "JSPROGYM — Premium Gym in Johor Bahru",
   description:
-    "JSPROGYM — a premium gym in Malaysia. World-class coaching, 60+ weekly classes and a community that shows up.",
+    "JS PRO GYM — a premium gym in Johor Bahru, Malaysia. World-class equipment, personal training and a community that shows up. Rated 4.9★ on Google.",
+  keywords: [
+    "JSPROGYM",
+    "JS PRO GYM",
+    "gym Johor Bahru",
+    "gym JB",
+    "personal trainer Johor Bahru",
+    "fitness Malaysia",
+    "Taman Nusa Bestari gym",
+  ],
+  openGraph: {
+    title: "JSPROGYM — Premium Gym in Johor Bahru",
+    description:
+      "World-class equipment, personal training and a community that shows up. Rated 4.9★ on Google.",
+    url: SITE_URL,
+    siteName: "JSPROGYM",
+    type: "website",
+  },
 };
 
 const LOCALES: Lang[] = ["en", "zh-Hans", "zh-Hant", "ms"];

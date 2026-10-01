@@ -14,14 +14,15 @@ export type ReviewData = {
   profileUrl: string;
 };
 
-// Curated sample reviews — shown until live Google reviews are configured.
+// Real Google reviews for JS PRO GYM (manually synced from Google Maps).
+// To auto-update these live, set GOOGLE_PLACES_API_KEY + GOOGLE_PLACE_ID.
 const SAMPLE: Review[] = [
-  { author: "Nadia Rahman", rating: 5, when: "2 weeks ago", text: "Best gym I've ever joined. The coaches actually care and the classes are always full of energy. Down 6kg and feeling amazing!" },
-  { author: "Wei Jie Lim", rating: 5, when: "1 month ago", text: "Clean, spacious and the equipment is top notch. 24/7 access fits my schedule perfectly. Highly recommend the strength program." },
-  { author: "Farah Aziz", rating: 5, when: "3 weeks ago", text: "The community here is unreal. Everyone cheers you on. My PT built a plan around my knee injury — so thoughtful." },
-  { author: "Daniel Tan", rating: 4, when: "2 months ago", text: "Great classes and friendly staff. Gets busy at peak hours but the app makes booking a spot super easy." },
-  { author: "Priya Menon", rating: 5, when: "1 week ago", text: "Joined for the recovery suite and stayed for the people. Sauna and cold plunge after a session is unbeatable." },
-  { author: "Haziq Idris", rating: 5, when: "1 month ago", text: "Coaches know their stuff. Booked a free tour, tried a class, signed up the same day. No regrets at all." },
+  { author: "Jia Jun Foo", rating: 5, when: "a year ago", text: "The gym itself is spotless and well-maintained. The equipment is top-notch, modern, and there's a great variety to cater to all types of workouts — whether you're into weightlifting or cardio. I especially love the spacious layout, which never feels overcrowded, even during peak hours." },
+  { author: "guna s", rating: 5, when: "a year ago", text: "Loved this gym! Super friendly vibe, lots of equipment to choose from, and everything is clean and well kept. Had an awesome workout here during my visit." },
+  { author: "Keith Ong", rating: 5, when: "a year ago", text: "By far the best gym in Johor Bahru — no other gym can beat this. A huge range of equipment (RealLeader USA, Hoist, Nautilus, Cybex) and so big compared to others, with 2 full storeys of machines." },
+  { author: "Chong Ko Win", rating: 5, when: "a year ago", text: "Very great gym and the environment is very clean. Everyone working there is super friendly. Highly recommended — especially for girls, because there's a dedicated ladies zone!" },
+  { author: "Sean Ng", rating: 5, when: "a year ago", text: "Dropped by during my day trip to JB. Seriously impressive gym — it has all the best equipment you'd ever need. Honestly beats most gyms in KL in terms of equipment, comfort and cleanliness." },
+  { author: "Christ Arthur", rating: 5, when: "a year ago", text: "The best gym in Johor Bahru. The staff is friendly, the environment is clean, and the equipment is more than sufficient. Recommend everyone to go! 🔥💪" },
 ];
 
 function average(list: Review[]) {
@@ -39,7 +40,7 @@ export async function getReviews(): Promise<ReviewData> {
   const placeId = process.env.GOOGLE_PLACE_ID;
   const profileUrl = placeId
     ? `https://search.google.com/local/reviews?placeid=${placeId}`
-    : "https://www.google.com/maps/search/JSPROGYM";
+    : "https://search.google.com/local/reviews?placeid=ChIJCTYKjLZz2jERF0n0gOuzDc0";
 
   if (key && placeId) {
     try {
@@ -74,7 +75,7 @@ export async function getReviews(): Promise<ReviewData> {
 
   return {
     rating: 4.9,
-    total: 428,
+    total: 301,
     reviews: SAMPLE,
     live: false,
     profileUrl,

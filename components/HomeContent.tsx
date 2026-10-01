@@ -5,7 +5,7 @@ import type { ReactNode, FormEvent } from "react";
 import Stars from "@/components/Stars";
 import Trans from "@/components/Trans";
 import SiteNav from "@/components/SiteNav";
-import MerdekaPopup from "@/components/MerdekaPopup";
+// import MerdekaPopup from "@/components/MerdekaPopup"; // promo popup disabled — re-enable this import + the <MerdekaPopup /> below
 import { useLang } from "@/components/LanguageProvider";
 import type { ReviewData } from "@/lib/reviews";
 import type { Lang } from "@/lib/i18n";
@@ -99,7 +99,7 @@ export default function HomeContent({
 
   return (
     <div className="t-premium">
-      <MerdekaPopup />
+      {/* <MerdekaPopup /> promo popup disabled */}
       <div className="progress" />
 
       {/* nav */}

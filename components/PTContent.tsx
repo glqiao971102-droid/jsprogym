@@ -235,10 +235,11 @@ export default function PTContent({ photos, cover }: { photos: Photo[]; cover: s
 
   // promo popup — opens shortly after landing on the page
   const [promoOpen, setPromoOpen] = useState(false);
-  useEffect(() => {
-    const id = setTimeout(() => setPromoOpen(true), 450);
-    return () => clearTimeout(id);
-  }, []);
+  // promo popup auto-open disabled — re-enable by uncommenting the block below
+  // useEffect(() => {
+  //   const id = setTimeout(() => setPromoOpen(true), 450);
+  //   return () => clearTimeout(id);
+  // }, []);
 
   const onEnquire = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

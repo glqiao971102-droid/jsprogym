@@ -2,7 +2,13 @@ import { NextResponse, type NextRequest } from "next/server";
 import { UNLOCK_COOKIE, UNLOCK_TOKEN } from "./lib/site-lock";
 
 // Site-wide maintenance gate (Next.js 16 "proxy" convention, formerly middleware).
+// OFF by default — the site is PUBLIC. To re-lock behind the password, set
+// SITE_MAINTENANCE=true in the environment (.env locally AND Vercel settings).
+const MAINTENANCE = process.env.SITE_MAINTENANCE === "true";
+
 export function proxy(req: NextRequest) {
+  if (!MAINTENANCE) return NextResponse.next(); // site is public — gate disabled
+
   const { pathname } = req.nextUrl;
 
   // Always allow: the gate, the unlock endpoint, and the Payload CMS

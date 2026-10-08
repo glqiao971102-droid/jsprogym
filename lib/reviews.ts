@@ -75,7 +75,7 @@ export async function getReviews(): Promise<ReviewData> {
 
   return {
     rating: 4.9,
-    total: 301,
+    total: 312,
     reviews: SAMPLE,
     live: false,
     profileUrl,

@@ -866,6 +866,57 @@
   gap: 14px;
 }
 
+/* header social icons (Facebook + Instagram) */
+.t-premium .nav-social {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.t-premium .nav-social a {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--line2);
+  display: grid;
+  place-items: center;
+  color: var(--gold-lite);
+  transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+.t-premium .nav-social a:hover {
+  background: rgba(230, 184, 76, 0.12);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.t-premium .nav-social svg {
+  width: 16px;
+  height: 16px;
+}
+/* social icons inside the mobile dropdown menu */
+.t-premium .nav-mobile-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+.t-premium .nav-mobile-social a {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid var(--line2);
+  display: grid;
+  place-items: center;
+  color: var(--gold-lite);
+}
+.t-premium .nav-mobile-social svg {
+  width: 21px;
+  height: 21px;
+}
+/* On mobile the header icons move into the dropdown menu */
+@media (max-width: 1040px) {
+  .t-premium .nav-social {
+    display: none;
+  }
+}
+
 /* language switcher */
 .t-premium .lang-switch {
   position: relative;
